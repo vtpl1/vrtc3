@@ -7,8 +7,8 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func RepairAVCC(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {

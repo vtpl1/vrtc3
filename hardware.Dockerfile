@@ -12,7 +12,7 @@ FROM golang:${GO_VERSION} AS go
 FROM ngrok/ngrok:${NGROK_VERSION} AS ngrok
 
 
-# 1. Build go2rtc binary
+# 1. Build vrtc3 binary
 FROM --platform=$BUILDPLATFORM go AS build
 ARG TARGETPLATFORM
 ARG TARGETOS
@@ -34,7 +34,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 go build -ldfl
 # 2. Collect all files
 FROM scratch AS rootfs
 
-COPY --link --from=build /build/go2rtc /usr/local/bin/
+COPY --link --from=build /build/vrtc3 /usr/local/bin/
 COPY --link --from=ngrok /bin/ngrok /usr/local/bin/
 
 # 3. Final image
@@ -44,7 +44,7 @@ RUN rm -f /etc/apt/apt.conf.d/docker-clean \
   && echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' >/etc/apt/apt.conf.d/keep-cache
 # Install ffmpeg, bash (for run.sh), tini (for signal handling),
 # and other common tools for the echo source.
-# non-free for Intel QSV support (not used by go2rtc, just for tests)
+# non-free for Intel QSV support (not used by vrtc3, just for tests)
 # mesa-va-drivers for AMD APU
 # libasound2-plugins for ALSA support
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked --mount=type=cache,target=/var/lib/apt,sharing=locked \
@@ -67,4 +67,4 @@ WORKDIR /config
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,video,utility
 
-CMD ["go2rtc", "-config", "/config/go2rtc.yaml"]
+CMD ["vrtc3", "-config", "/config/vrtc3.yaml"]

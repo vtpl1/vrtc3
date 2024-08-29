@@ -13,7 +13,7 @@
 go get -u
 go mod tidy
 go mod why github.com/pion/rtcp
-go list -deps .\cmd\go2rtc_rtsp\
+go list -deps .\cmd\vrtc3_rtsp\
 ./goweight
 ```
 
@@ -22,12 +22,12 @@ go list -deps .\cmd\go2rtc_rtsp\
 ```
 - gopkg.in/yaml.v3
   - github.com/kr/pretty
-- github.com/AlexxIT/go2rtc/pkg/hap
+- github.com/vtpl1/vrtc3/pkg/hap
   - github.com/tadglines/go-pkgs
   - golang.org/x/crypto
-- github.com/AlexxIT/go2rtc/pkg/mdns
+- github.com/vtpl1/vrtc3/pkg/mdns
   - github.com/miekg/dns
-- github.com/AlexxIT/go2rtc/pkg/pcm
+- github.com/vtpl1/vrtc3/pkg/pcm
   - github.com/sigurn/crc16
   - github.com/sigurn/crc8
 - github.com/pion/ice/v2

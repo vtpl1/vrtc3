@@ -5,10 +5,10 @@ import (
 	"net"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/internal/app"
-	"github.com/AlexxIT/go2rtc/internal/webrtc"
-	"github.com/AlexxIT/go2rtc/pkg/ngrok"
 	"github.com/rs/zerolog"
+	"github.com/vtpl1/vrtc3/internal/app"
+	"github.com/vtpl1/vrtc3/internal/webrtc"
+	"github.com/vtpl1/vrtc3/pkg/ngrok"
 )
 
 func Init() {

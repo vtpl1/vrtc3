@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func (c *Client) GetMedias() []*core.Media {

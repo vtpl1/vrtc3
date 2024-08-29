@@ -5,16 +5,16 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/app"
-	"github.com/AlexxIT/go2rtc/internal/ffmpeg/device"
-	"github.com/AlexxIT/go2rtc/internal/ffmpeg/hardware"
-	"github.com/AlexxIT/go2rtc/internal/ffmpeg/virtual"
-	"github.com/AlexxIT/go2rtc/internal/rtsp"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/ffmpeg"
 	"github.com/rs/zerolog"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/app"
+	"github.com/vtpl1/vrtc3/internal/ffmpeg/device"
+	"github.com/vtpl1/vrtc3/internal/ffmpeg/hardware"
+	"github.com/vtpl1/vrtc3/internal/ffmpeg/virtual"
+	"github.com/vtpl1/vrtc3/internal/rtsp"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/ffmpeg"
 )
 
 func Init() {
@@ -65,12 +65,12 @@ var defaults = map[string]string{
 	// inputs
 	"file": "-re -i {input}",
 	"http": "-fflags nobuffer -flags low_delay -i {input}",
-	"rtsp": "-fflags nobuffer -flags low_delay -timeout 5000000 -user_agent go2rtc/ffmpeg -rtsp_flags prefer_tcp -i {input}",
+	"rtsp": "-fflags nobuffer -flags low_delay -timeout 5000000 -user_agent vrtc3/ffmpeg -rtsp_flags prefer_tcp -i {input}",
 
-	"rtsp/udp": "-fflags nobuffer -flags low_delay -timeout 5000000 -user_agent go2rtc/ffmpeg -i {input}",
+	"rtsp/udp": "-fflags nobuffer -flags low_delay -timeout 5000000 -user_agent vrtc3/ffmpeg -i {input}",
 
 	// output
-	"output":       "-user_agent ffmpeg/go2rtc -rtsp_transport tcp -f rtsp {output}",
+	"output":       "-user_agent ffmpeg/vrtc3 -rtsp_transport tcp -f rtsp {output}",
 	"output/mjpeg": "-f mjpeg -",
 	"output/raw":   "-f yuv4mpegpipe -",
 	"output/aac":   "-f adts -",
@@ -128,7 +128,7 @@ var defaults = map[string]string{
 	"h265/v4l2m2m": "-c:v hevc_v4l2m2m -g 50 -bf 0",
 
 	// hardware Rockchip
-	// important to use custom ffmpeg https://github.com/AlexxIT/go2rtc/issues/768
+	// important to use custom ffmpeg https://github.com/vtpl1/vrtc3/issues/768
 	// hevc - doesn't have a profile setting
 	"h264/rkmpp": "-c:v h264_rkmpp_encoder -g 50 -bf 0 -profile:v high -level:v 4.1",
 	"h265/rkmpp": "-c:v hevc_rkmpp_encoder -g 50 -bf 0 -level:v 5.1",
@@ -249,7 +249,7 @@ func parseArgs(s string) *ffmpeg.Args {
 	if query != nil {
 		// 1. Process raw params for FFmpeg
 		for _, raw := range query["raw"] {
-			// support templates https://github.com/AlexxIT/go2rtc/issues/487
+			// support templates https://github.com/vtpl1/vrtc3/issues/487
 			raw = configTemplate(raw)
 			args.AddCodec(raw)
 		}
@@ -287,7 +287,7 @@ func parseArgs(s string) *ffmpeg.Args {
 		}
 
 		for _, drawtext := range query["drawtext"] {
-			// support templates https://github.com/AlexxIT/go2rtc/issues/487
+			// support templates https://github.com/vtpl1/vrtc3/issues/487
 			drawtext = configTemplate(drawtext)
 
 			// support default timestamp format

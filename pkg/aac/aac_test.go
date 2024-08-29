@@ -4,8 +4,8 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/stretchr/testify/require"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func TestConfigToCodec(t *testing.T) {

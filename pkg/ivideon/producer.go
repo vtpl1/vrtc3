@@ -3,7 +3,7 @@ package ivideon
 import (
 	"encoding/json"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func (c *Client) GetMedias() []*core.Media {

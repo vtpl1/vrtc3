@@ -8,7 +8,7 @@
   - all operations must be separated by a semicolon
   - all operations, except the last one, must declare a new variable (`let s = "abc";`)
   - the last operation should return a string
-- go2rtc supports additional functions:
+- vrtc3 supports additional functions:
   - `fetch` - JS-like HTTP requests
   - `match` - JS-like RegExp queries
 

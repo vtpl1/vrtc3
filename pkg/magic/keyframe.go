@@ -3,12 +3,12 @@ package magic
 import (
 	"io"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
-	"github.com/AlexxIT/go2rtc/pkg/h264/annexb"
-	"github.com/AlexxIT/go2rtc/pkg/h265"
-	"github.com/AlexxIT/go2rtc/pkg/mjpeg"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/h264"
+	"github.com/vtpl1/vrtc3/pkg/h264/annexb"
+	"github.com/vtpl1/vrtc3/pkg/h265"
+	"github.com/vtpl1/vrtc3/pkg/mjpeg"
 )
 
 type Keyframe struct {

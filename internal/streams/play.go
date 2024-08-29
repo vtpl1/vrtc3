@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func (s *Stream) Play(source string) error {

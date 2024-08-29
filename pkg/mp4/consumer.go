@@ -5,12 +5,12 @@ import (
 	"io"
 	"sync"
 
-	"github.com/AlexxIT/go2rtc/pkg/aac"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
-	"github.com/AlexxIT/go2rtc/pkg/h265"
-	"github.com/AlexxIT/go2rtc/pkg/pcm"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/aac"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/h264"
+	"github.com/vtpl1/vrtc3/pkg/h265"
+	"github.com/vtpl1/vrtc3/pkg/pcm"
 )
 
 type Consumer struct {

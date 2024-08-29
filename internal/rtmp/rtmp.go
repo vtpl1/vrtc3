@@ -6,13 +6,13 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/app"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/flv"
-	"github.com/AlexxIT/go2rtc/pkg/rtmp"
 	"github.com/rs/zerolog"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/app"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/flv"
+	"github.com/vtpl1/vrtc3/pkg/rtmp"
 )
 
 func Init() {

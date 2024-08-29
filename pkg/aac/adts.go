@@ -3,9 +3,9 @@ package aac
 import (
 	"encoding/hex"
 
-	"github.com/AlexxIT/go2rtc/pkg/bits"
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/bits"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func IsADTS(b []byte) bool {

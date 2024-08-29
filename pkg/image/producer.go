@@ -5,9 +5,9 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/tcp"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
 
 type Producer struct {

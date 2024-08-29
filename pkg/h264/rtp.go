@@ -3,10 +3,10 @@ package h264
 import (
 	"encoding/binary"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/h264/annexb"
 	"github.com/pion/rtp"
 	"github.com/pion/rtp/codecs"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/h264/annexb"
 )
 
 const RTPPacketVersionAVC = 0
@@ -30,7 +30,7 @@ func RTPDepay(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
 		}
 
 		// Memory overflow protection. Can happen if we miss a lot of packets with the marker.
-		// https://github.com/AlexxIT/go2rtc/issues/675
+		// https://github.com/vtpl1/vrtc3/issues/675
 		if len(buf) > 5*1024*1024 {
 			buf = buf[: 0 : 512*1024]
 		}
@@ -43,7 +43,7 @@ func RTPDepay(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
 				buf = append(buf, payload...)
 				return
 			case NALUTypeSEI:
-				// RtspServer https://github.com/AlexxIT/go2rtc/issues/244
+				// RtspServer https://github.com/vtpl1/vrtc3/issues/244
 				// sends, marked SPS, marked PPS, marked SEI, marked IFrame
 				return
 			}
@@ -87,8 +87,8 @@ func RTPDepay(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
 		// should not be that huge SPS
 		if NALUType(payload) == NALUTypeSPS && binary.BigEndian.Uint32(payload) >= PSMaxSize {
 			// some Chinese buggy cameras has single packet with SPS+PPS+IFrame separated by 00 00 00 01
-			// https://github.com/AlexxIT/WebRTC/issues/391
-			// https://github.com/AlexxIT/WebRTC/issues/392
+			// https://github.com/vtpl1/WebRTC/issues/391
+			// https://github.com/vtpl1/WebRTC/issues/392
 			payload = annexb.FixAnnexBInAVCC(payload)
 		}
 

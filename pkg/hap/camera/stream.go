@@ -3,9 +3,9 @@ package camera
 import (
 	"errors"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/hap"
-	"github.com/AlexxIT/go2rtc/pkg/srtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/hap"
+	"github.com/vtpl1/vrtc3/pkg/srtp"
 )
 
 type Stream struct {

@@ -9,7 +9,7 @@ FROM python:${PYTHON_VERSION}-alpine AS base
 FROM ngrok/ngrok:${NGROK_VERSION}-alpine AS ngrok
 
 
-# 1. Build go2rtc binary
+# 1. Build vrtc3 binary
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 ARG TARGETPLATFORM
 ARG TARGETOS
@@ -33,7 +33,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 go build -ldfl
 # 2. Collect all files
 FROM scratch AS rootfs
 
-COPY --from=build /build/go2rtc /usr/local/bin/
+COPY --from=build /build/vrtc3 /usr/local/bin/
 COPY --from=ngrok /bin/ngrok /usr/local/bin/
 
 
@@ -62,4 +62,4 @@ ENTRYPOINT ["/sbin/tini", "--"]
 VOLUME /config
 WORKDIR /config
 
-CMD ["go2rtc", "-config", "/config/go2rtc.yaml"]
+CMD ["vrtc3", "-config", "/config/vrtc3.yaml"]

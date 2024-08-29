@@ -6,16 +6,16 @@ import (
 	"errors"
 	"io"
 
-	"github.com/AlexxIT/go2rtc/pkg/aac"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/flv"
-	"github.com/AlexxIT/go2rtc/pkg/h264/annexb"
-	"github.com/AlexxIT/go2rtc/pkg/magic/bitstream"
-	"github.com/AlexxIT/go2rtc/pkg/magic/mjpeg"
-	"github.com/AlexxIT/go2rtc/pkg/mpegts"
-	"github.com/AlexxIT/go2rtc/pkg/mpjpeg"
-	"github.com/AlexxIT/go2rtc/pkg/wav"
-	"github.com/AlexxIT/go2rtc/pkg/y4m"
+	"github.com/vtpl1/vrtc3/pkg/aac"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/flv"
+	"github.com/vtpl1/vrtc3/pkg/h264/annexb"
+	"github.com/vtpl1/vrtc3/pkg/magic/bitstream"
+	"github.com/vtpl1/vrtc3/pkg/magic/mjpeg"
+	"github.com/vtpl1/vrtc3/pkg/mpegts"
+	"github.com/vtpl1/vrtc3/pkg/mpjpeg"
+	"github.com/vtpl1/vrtc3/pkg/wav"
+	"github.com/vtpl1/vrtc3/pkg/y4m"
 )
 
 func Open(r io.Reader) (core.Producer, error) {
@@ -55,7 +55,7 @@ func Open(r io.Reader) (core.Producer, error) {
 	}
 
 	// support MJPEG with trash on start
-	// https://github.com/AlexxIT/go2rtc/issues/747
+	// https://github.com/vtpl1/vrtc3/issues/747
 	if b, err = rd.Peek(4096); err != nil {
 		return nil, err
 	}

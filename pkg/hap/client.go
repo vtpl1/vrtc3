@@ -14,13 +14,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/pkg/hap/chacha20poly1305"
-	"github.com/AlexxIT/go2rtc/pkg/hap/curve25519"
-	"github.com/AlexxIT/go2rtc/pkg/hap/ed25519"
-	"github.com/AlexxIT/go2rtc/pkg/hap/hkdf"
-	"github.com/AlexxIT/go2rtc/pkg/hap/secure"
-	"github.com/AlexxIT/go2rtc/pkg/hap/tlv8"
-	"github.com/AlexxIT/go2rtc/pkg/mdns"
+	"github.com/vtpl1/vrtc3/pkg/hap/chacha20poly1305"
+	"github.com/vtpl1/vrtc3/pkg/hap/curve25519"
+	"github.com/vtpl1/vrtc3/pkg/hap/ed25519"
+	"github.com/vtpl1/vrtc3/pkg/hap/hkdf"
+	"github.com/vtpl1/vrtc3/pkg/hap/secure"
+	"github.com/vtpl1/vrtc3/pkg/hap/tlv8"
+	"github.com/vtpl1/vrtc3/pkg/mdns"
 )
 
 const (

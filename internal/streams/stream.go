@@ -5,7 +5,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 type Stream struct {

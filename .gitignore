@@ -1,12 +1,13 @@
 .idea/
 .tmp/
 
-go2rtc.yaml
-go2rtc.json
+vrtc3.yaml
+vrtc3.json
 
-go2rtc_linux*
-go2rtc_mac*
-go2rtc_win*
+vrtc3_linux*
+vrtc3_mac*
+vrtc3_win*
+vrtc3
 
 0_test.go
 

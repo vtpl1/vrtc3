@@ -3,10 +3,10 @@ package webrtc
 import (
 	"testing"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/webrtc/v3"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func TestClient(t *testing.T) {
@@ -49,11 +49,11 @@ a=rtcp-rsize
 a=rtpmap:97 H264/90000
 a=fmtp:97 packetization-mode=1;profile-level-id=42e01f
 a=extmap:1 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
-a=ssrc:2815449682 cname:go2rtc
-a=ssrc:2815449682 msid:go2rtc video
-a=ssrc:2815449682 mslabel:go2rtc
+a=ssrc:2815449682 cname:vrtc3
+a=ssrc:2815449682 msid:vrtc3 video
+a=ssrc:2815449682 mslabel:vrtc3
 a=ssrc:2815449682 label:video
-a=msid:go2rtc video
+a=msid:vrtc3 video
 a=sendonly
 m=audio 9 UDP/TLS/RTP/SAVPF 8
 c=IN IP4 0.0.0.0
@@ -65,11 +65,11 @@ a=rtcp-mux
 a=rtcp-rsize
 a=rtpmap:8 PCMA/8000
 a=extmap:1 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
-a=ssrc:1392166302 cname:go2rtc
-a=ssrc:1392166302 msid:go2rtc audio
-a=ssrc:1392166302 mslabel:go2rtc
+a=ssrc:1392166302 cname:vrtc3
+a=ssrc:1392166302 msid:vrtc3 audio
+a=ssrc:1392166302 mslabel:vrtc3
 a=ssrc:1392166302 label:audio
-a=msid:go2rtc audio
+a=msid:vrtc3 audio
 a=sendonly
 m=audio 9 UDP/TLS/RTP/SAVPF 0
 c=IN IP4 0.0.0.0

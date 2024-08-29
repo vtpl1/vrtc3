@@ -1,11 +1,11 @@
 # Notes
 
-go2rtc tries to name formats, protocols and codecs the same way they are named in FFmpeg.
-Some formats and protocols go2rtc supports exclusively. They have no equivalent in FFmpeg.
+vrtc3 tries to name formats, protocols and codecs the same way they are named in FFmpeg.
+Some formats and protocols vrtc3 supports exclusively. They have no equivalent in FFmpeg.
 
 ## Producers (input)
 
-- The initiator of the connection can be go2rtc - **Source protocols**
+- The initiator of the connection can be vrtc3 - **Source protocols**
 - The initiator of the connection can be an external program - **Ingress protocols**
 - Codecs can be incoming - **Recevers codecs**
 - Codecs can be outgoing (two way audio) - **Senders codecs**

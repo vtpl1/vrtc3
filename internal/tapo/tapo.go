@@ -1,10 +1,10 @@
 package tapo
 
 import (
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/kasa"
-	"github.com/AlexxIT/go2rtc/pkg/tapo"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/kasa"
+	"github.com/vtpl1/vrtc3/pkg/tapo"
 )
 
 func Init() {

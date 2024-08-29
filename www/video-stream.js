@@ -2,7 +2,7 @@ import {VideoRTC} from './video-rtc.js';
 
 /**
  * This is example, how you can extend VideoRTC player for your app.
- * Also you can check this example: https://github.com/AlexxIT/WebRTC
+ * Also you can check this example: https://github.com/vtpl1/WebRTC
  */
 class VideoStream extends VideoRTC {
     set divMode(value) {

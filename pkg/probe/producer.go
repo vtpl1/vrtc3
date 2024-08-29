@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 type Probe struct {

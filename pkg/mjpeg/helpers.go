@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"image/jpeg"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/y4m"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/y4m"
 )
 
 // FixJPEG - reencode JPEG if it has wrong header

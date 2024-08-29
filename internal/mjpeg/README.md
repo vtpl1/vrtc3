@@ -11,7 +11,7 @@
 - escape text param with urlencode
 - you can stream any camera or file from a disc
 
-**go2rtc.yaml** - transcoding to MJPEG, terminal size - 210x59 (16/9), fps - 10
+**vrtc3.yaml** - transcoding to MJPEG, terminal size - 210x59 (16/9), fps - 10
 
 ```yaml
 streams:

@@ -9,10 +9,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/tcp"
-	"github.com/AlexxIT/go2rtc/pkg/webrtc"
 	pion "github.com/pion/webrtc/v3"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/tcp"
+	"github.com/vtpl1/vrtc3/pkg/webrtc"
 )
 
 // This package handles the Milestone WebRTC session lifecycle, including authentication,

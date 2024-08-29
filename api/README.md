@@ -4,7 +4,7 @@ Fill free to make any API design proposals.
 
 ## HTTP API
 
-Interactive [OpenAPI](https://alexxit.github.io/go2rtc/api/).
+Interactive [OpenAPI](https://alexxit.github.io/vrtc3/api/).
 
 `www/stream.html` - universal viewer with support params in URL:
 
@@ -25,7 +25,7 @@ Interactive [OpenAPI](https://alexxit.github.io/go2rtc/api/).
 - You can write your viewer from the scratch
 - You can extend the built-in viewer - `www/video-rtc.js`
 - Check example - `www/video-stream.js`
-- Check example - https://github.com/AlexxIT/WebRTC
+- Check example - https://github.com/vtpl1/WebRTC
 
 `video-rtc.js` features:
 

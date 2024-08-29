@@ -7,11 +7,11 @@ import (
 	"net"
 	"net/url"
 
-	"github.com/AlexxIT/go2rtc/pkg/hap/chacha20poly1305"
-	"github.com/AlexxIT/go2rtc/pkg/hap/ed25519"
-	"github.com/AlexxIT/go2rtc/pkg/hap/hkdf"
-	"github.com/AlexxIT/go2rtc/pkg/hap/tlv8"
 	"github.com/tadglines/go-pkgs/crypto/srp"
+	"github.com/vtpl1/vrtc3/pkg/hap/chacha20poly1305"
+	"github.com/vtpl1/vrtc3/pkg/hap/ed25519"
+	"github.com/vtpl1/vrtc3/pkg/hap/hkdf"
+	"github.com/vtpl1/vrtc3/pkg/hap/tlv8"
 )
 
 // Pair homekit

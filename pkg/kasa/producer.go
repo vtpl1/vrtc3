@@ -9,12 +9,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
-	"github.com/AlexxIT/go2rtc/pkg/h264/annexb"
-	"github.com/AlexxIT/go2rtc/pkg/mpjpeg"
-	"github.com/AlexxIT/go2rtc/pkg/tcp"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/h264"
+	"github.com/vtpl1/vrtc3/pkg/h264/annexb"
+	"github.com/vtpl1/vrtc3/pkg/mpjpeg"
+	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
 
 type Producer struct {

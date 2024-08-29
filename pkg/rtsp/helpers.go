@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/rtcp"
 	"github.com/pion/sdp/v3"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 type RTCP struct {
@@ -27,7 +27,7 @@ t=0 0`
 func UnmarshalSDP(rawSDP []byte) ([]*core.Media, error) {
 	sd := &sdp.SessionDescription{}
 	if err := sd.Unmarshal(rawSDP); err != nil {
-		// fix multiple `s=` https://github.com/AlexxIT/WebRTC/issues/417
+		// fix multiple `s=` https://github.com/vtpl1/WebRTC/issues/417
 		re, _ := regexp.Compile("\ns=[^\n]+")
 		rawSDP = re.ReplaceAll(rawSDP, nil)
 
@@ -58,7 +58,7 @@ func UnmarshalSDP(rawSDP []byte) ([]*core.Media, error) {
 		}
 	}
 
-	// fix buggy camera https://github.com/AlexxIT/go2rtc/issues/771
+	// fix buggy camera https://github.com/vtpl1/vrtc3/issues/771
 	forceDirection := sd.Origin.Username == "CV-RTSPHandler"
 
 	var medias []*core.Media
@@ -67,7 +67,7 @@ func UnmarshalSDP(rawSDP []byte) ([]*core.Media, error) {
 		media := core.UnmarshalMedia(md)
 
 		// Check buggy SDP with fmtp for H264 on another track
-		// https://github.com/AlexxIT/WebRTC/issues/419
+		// https://github.com/vtpl1/WebRTC/issues/419
 		for _, codec := range media.Codecs {
 			if codec.Name == core.CodecH264 && codec.FmtpLine == "" {
 				codec.FmtpLine = findFmtpLine(codec.PayloadType, sd.MediaDescriptions)

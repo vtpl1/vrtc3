@@ -18,9 +18,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/mpegts"
-	"github.com/AlexxIT/go2rtc/pkg/tcp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/mpegts"
+	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
 
 // Deprecated: should be rewritten to core.Connection

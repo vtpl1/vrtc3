@@ -1,5 +1,5 @@
 /**
- * VideoRTC v1.6.0 - Video player for go2rtc streaming application.
+ * VideoRTC v1.6.0 - Video player for vrtc3 streaming application.
  *
  * All modern web technologies are supported in almost any browser except Apple Safari.
  *

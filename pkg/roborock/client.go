@@ -12,10 +12,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/roborock/iot"
-	"github.com/AlexxIT/go2rtc/pkg/webrtc"
 	pion "github.com/pion/webrtc/v3"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/roborock/iot"
+	"github.com/vtpl1/vrtc3/pkg/webrtc"
 )
 
 // Deprecated: should be rewritten to core.Connection

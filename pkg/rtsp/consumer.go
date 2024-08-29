@@ -3,13 +3,13 @@ package rtsp
 import (
 	"time"
 
-	"github.com/AlexxIT/go2rtc/pkg/aac"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
-	"github.com/AlexxIT/go2rtc/pkg/h265"
-	"github.com/AlexxIT/go2rtc/pkg/mjpeg"
-	"github.com/AlexxIT/go2rtc/pkg/pcm"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/aac"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/h264"
+	"github.com/vtpl1/vrtc3/pkg/h265"
+	"github.com/vtpl1/vrtc3/pkg/mjpeg"
+	"github.com/vtpl1/vrtc3/pkg/pcm"
 )
 
 func (c *Conn) GetMedias() []*core.Media {
@@ -55,7 +55,7 @@ func (c *Conn) AddTrack(media *core.Media, codec *core.Codec, track *core.Receiv
 	sender.Handler = c.packetWriter(track.Codec, channel, codec.PayloadType)
 
 	if c.mode == core.ModeActiveProducer && track.Codec.Name == core.CodecPCMA {
-		// Fix Reolink Doorbell https://github.com/AlexxIT/go2rtc/issues/331
+		// Fix Reolink Doorbell https://github.com/vtpl1/vrtc3/issues/331
 		sender.Handler = pcm.RepackG711(true, sender.Handler)
 	}
 

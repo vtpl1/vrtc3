@@ -51,7 +51,7 @@ Content-Type: application/sdp
 
 v=0
 o=- 1 1 IN IP4 0.0.0.0
-s=go2rtc/1.2.0
+s=vrtc3/1.2.0
 c=IN IP4 0.0.0.0
 t=0 0
 m=audio 0 RTP/AVP 96

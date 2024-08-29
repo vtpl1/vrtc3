@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "go2rtc",
+  "title": "vrtc3",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
@@ -51,7 +51,7 @@
         "base_path": {
           "type": "string",
           "examples": [
-            "/go2rtc"
+            "/vrtc3"
           ]
         },
         "static_dir": {
@@ -84,7 +84,7 @@
         "unix_listen": {
           "type": "string",
           "examples": [
-            "/tmp/go2rtc.sock"
+            "/tmp/vrtc3.sock"
           ]
         }
       }

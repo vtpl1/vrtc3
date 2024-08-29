@@ -2,8 +2,9 @@ package h265
 
 import (
 	"encoding/binary"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
 	"math"
+
+	"github.com/vtpl1/vrtc3/pkg/h264"
 )
 
 //

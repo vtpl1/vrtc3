@@ -3,8 +3,8 @@ package aac
 import (
 	"encoding/binary"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 const RTPPacketVersionAAC = 0

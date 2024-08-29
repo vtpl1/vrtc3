@@ -7,14 +7,14 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/hls"
-	"github.com/AlexxIT/go2rtc/pkg/image"
-	"github.com/AlexxIT/go2rtc/pkg/magic"
-	"github.com/AlexxIT/go2rtc/pkg/mpjpeg"
-	"github.com/AlexxIT/go2rtc/pkg/tcp"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/hls"
+	"github.com/vtpl1/vrtc3/pkg/image"
+	"github.com/vtpl1/vrtc3/pkg/magic"
+	"github.com/vtpl1/vrtc3/pkg/mpjpeg"
+	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
 
 func Init() {

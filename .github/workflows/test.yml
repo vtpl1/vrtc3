@@ -29,24 +29,24 @@ jobs:
           go-version: '1.22'
 
       - name: Build Go binary
-        run: go build -ldflags "-s -w" -trimpath -o ./go2rtc
+        run: go build -ldflags "-s -w" -trimpath -o ./vrtc3
 
       - name: Test Go binary on linux
         if: matrix.os == 'ubuntu-latest'
         run: |
             if [ "${{ matrix.arch }}" = "amd64" ]; then
-              ./go2rtc -version
+              ./vrtc3 -version
             else
               sudo apt-get update && sudo apt-get install -y qemu-user-static
               sudo cp /usr/bin/qemu-aarch64-static .
               sudo chown $USER:$USER ./qemu-aarch64-static
-              qemu-aarch64-static ./go2rtc -version
+              qemu-aarch64-static ./vrtc3 -version
             fi
       - name: Test Go binary on macos
         if: matrix.os == 'macos-latest'
         run: |
             if [ "${{ matrix.arch }}" = "amd64" ]; then
-              ./go2rtc -version
+              ./vrtc3 -version
             else
               echo "ARM64 architecture is not yet supported on macOS"
             fi
@@ -54,7 +54,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
             if ("${{ matrix.arch }}" -eq "amd64") {
-                .\go2rtc* -version
+                .\vrtc3* -version
             } else {
                 Write-Host "ARM64 architecture is not yet supported on Windows"
             }
@@ -82,10 +82,10 @@ jobs:
           platforms: linux/${{ matrix.platform }}
           push: false
           load: true
-          tags: go2rtc-${{ matrix.platform }}
+          tags: vrtc3-${{ matrix.platform }}
       - name: test run
         run: |
-          docker run --platform=linux/${{ matrix.platform }} --rm go2rtc-${{ matrix.platform }} go2rtc -version
+          docker run --platform=linux/${{ matrix.platform }} --rm vrtc3-${{ matrix.platform }} vrtc3 -version
 
       - name: Build and push Hardware
         if: matrix.platform == 'amd64'
@@ -96,8 +96,8 @@ jobs:
           platforms: linux/amd64
           push: false
           load: true
-          tags: go2rtc-${{ matrix.platform }}-hardware
+          tags: vrtc3-${{ matrix.platform }}-hardware
       - name: test run
         if: matrix.platform == 'amd64'
         run: |
-          docker run --platform=linux/${{ matrix.platform }} --rm go2rtc-${{ matrix.platform }}-hardware go2rtc -version
+          docker run --platform=linux/${{ matrix.platform }} --rm vrtc3-${{ matrix.platform }}-hardware vrtc3 -version

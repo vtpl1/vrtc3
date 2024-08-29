@@ -8,10 +8,10 @@ import (
 	"encoding/binary"
 	"unicode/utf8"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/rtp"
 	"github.com/sigurn/crc16"
 	"github.com/sigurn/crc8"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func FLACHeader(magic bool, sampleRate uint32) []byte {

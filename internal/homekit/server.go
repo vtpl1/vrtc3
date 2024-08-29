@@ -9,18 +9,18 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/internal/app"
-	"github.com/AlexxIT/go2rtc/internal/ffmpeg"
-	srtp2 "github.com/AlexxIT/go2rtc/internal/srtp"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/hap"
-	"github.com/AlexxIT/go2rtc/pkg/hap/camera"
-	"github.com/AlexxIT/go2rtc/pkg/hap/tlv8"
-	"github.com/AlexxIT/go2rtc/pkg/homekit"
-	"github.com/AlexxIT/go2rtc/pkg/magic"
-	"github.com/AlexxIT/go2rtc/pkg/mdns"
-	"github.com/AlexxIT/go2rtc/pkg/srtp"
+	"github.com/vtpl1/vrtc3/internal/app"
+	"github.com/vtpl1/vrtc3/internal/ffmpeg"
+	srtp2 "github.com/vtpl1/vrtc3/internal/srtp"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/hap"
+	"github.com/vtpl1/vrtc3/pkg/hap/camera"
+	"github.com/vtpl1/vrtc3/pkg/hap/tlv8"
+	"github.com/vtpl1/vrtc3/pkg/homekit"
+	"github.com/vtpl1/vrtc3/pkg/magic"
+	"github.com/vtpl1/vrtc3/pkg/mdns"
+	"github.com/vtpl1/vrtc3/pkg/srtp"
 )
 
 type server struct {
@@ -234,7 +234,7 @@ func calcName(name, seed string) string {
 		return name
 	}
 	b := sha512.Sum512([]byte(seed))
-	return fmt.Sprintf("go2rtc-%02X%02X", b[0], b[2])
+	return fmt.Sprintf("vrtc3-%02X%02X", b[0], b[2])
 }
 
 func calcDeviceID(deviceID, seed string) string {

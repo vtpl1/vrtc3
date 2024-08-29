@@ -3,9 +3,9 @@ package streams
 import (
 	"net/http"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/app"
-	"github.com/AlexxIT/go2rtc/pkg/probe"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/app"
+	"github.com/vtpl1/vrtc3/pkg/probe"
 )
 
 func apiStreams(w http.ResponseWriter, r *http.Request) {
@@ -64,7 +64,7 @@ func apiStreams(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// support {input} templates: https://github.com/AlexxIT/go2rtc#module-hass
+		// support {input} templates: https://github.com/vtpl1/vrtc3#module-hass
 		if Patch(name, src) == nil {
 			http.Error(w, "", http.StatusBadRequest)
 		}

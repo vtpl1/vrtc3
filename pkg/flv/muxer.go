@@ -4,10 +4,10 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/flv/amf"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/flv/amf"
+	"github.com/vtpl1/vrtc3/pkg/h264"
 )
 
 type Muxer struct {

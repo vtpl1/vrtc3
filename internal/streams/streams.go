@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/app"
 	"github.com/rs/zerolog"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/app"
 )
 
 func Init() {
@@ -70,7 +70,7 @@ func Patch(name string, source string) *Stream {
 	streamsMu.Lock()
 	defer streamsMu.Unlock()
 
-	// check if source links to some stream name from go2rtc
+	// check if source links to some stream name from vrtc3
 	if u, err := url.Parse(source); err == nil && u.Scheme == "rtsp" && len(u.Path) > 1 {
 		rtspName := u.Path[1:]
 		if stream, ok := streams[rtspName]; ok {

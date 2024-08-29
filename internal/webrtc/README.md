@@ -1,6 +1,6 @@
 What you should to know about WebRTC:
 
-- It's almost always a **direct [peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) connection** from your browser to go2rtc app
+- It's almost always a **direct [peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) connection** from your browser to vrtc3 app
 - When you use Home Assistant, Frigate, Nginx, Nabu Casa, Cloudflare and other software - they are only **involved in establishing** the connection, but they are **not involved in transferring** media data
 - WebRTC media cannot be transferred inside an HTTP connection
 - Usually, WebRTC uses random UDP ports on client and server side to establish a connection
@@ -71,7 +71,7 @@ webrtc:
     udp_ports: [ 50000, 50100 ]
 ```
 
-By default go2rtc uses **fixed TCP** port and multiple **random UDP** ports for each WebRTC connection - `listen: ":8555/tcp"`.
+By default vrtc3 uses **fixed TCP** port and multiple **random UDP** ports for each WebRTC connection - `listen: ":8555/tcp"`.
 
 You can set **fixed TCP** and **fixed UDP** port for all connections - `listen: ":8555"`. This may has lower performance, but it's your choice. 
 
@@ -81,7 +81,7 @@ Don't know why, but you can disable TCP port and leave only random UDP ports - `
 
 Filters allow you to exclude unnecessary candidates. Extra candidates don't make your connection worse or better. But the wrong filter settings can break everything. Skip this setting if you don't understand it.
 
-For example, go2rtc is installed on the host system. And there are unnecessary interfaces. You can keep only the relevant via `interfaces` or `ips` options. You can also exclude IPv6 candidates if your server supports them but your home network does not.
+For example, vrtc3 is installed on the host system. And there are unnecessary interfaces. You can keep only the relevant via `interfaces` or `ips` options. You can also exclude IPv6 candidates if your server supports them but your home network does not.
 
 ```yaml
 webrtc:
@@ -91,7 +91,7 @@ webrtc:
     networks: [ udp4, tcp4 ]  # skip IPv6, if it's not supported for you
 ```
 
-For example, go2rtc inside closed docker container (ex. [Frigate](https://frigate.video/)). You shouldn't filter docker interfaces, otherwise go2rtc will not be able to connect anywhere. But you can filter the docker candidates because no one can connect to them.
+For example, vrtc3 inside closed docker container (ex. [Frigate](https://frigate.video/)). You shouldn't filter docker interfaces, otherwise vrtc3 will not be able to connect anywhere. But you can filter the docker candidates because no one can connect to them.
 
 ```yaml
 webrtc:

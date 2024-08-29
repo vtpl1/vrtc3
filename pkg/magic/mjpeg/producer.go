@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"io"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 type Producer struct {

@@ -4,8 +4,8 @@ import (
 	"encoding/base64"
 	"testing"
 
-	"github.com/AlexxIT/go2rtc/pkg/hap"
 	"github.com/stretchr/testify/require"
+	"github.com/vtpl1/vrtc3/pkg/hap"
 )
 
 type testTLV8 struct {

@@ -5,10 +5,11 @@ import (
 	"crypto/sha1"
 	"encoding/base64"
 	"errors"
-	"github.com/AlexxIT/go2rtc/pkg/tcp"
 	"net"
 	"net/http"
 	"strings"
+
+	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
 
 func Dial(address string) (net.Conn, error) {
@@ -17,7 +18,7 @@ func Dial(address string) (net.Conn, error) {
 	}
 
 	// using custom client for support Digest Auth
-	// https://github.com/AlexxIT/go2rtc/issues/415
+	// https://github.com/vtpl1/vrtc3/issues/415
 	ctx, pconn := tcp.WithConn()
 
 	req, err := http.NewRequestWithContext(ctx, "GET", address, nil)

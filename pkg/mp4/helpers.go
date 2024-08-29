@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 // ParseQuery - like usual parse, but with mp4 param handler

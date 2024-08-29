@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/AlexxIT/go2rtc/pkg/flv/amf"
+	"github.com/vtpl1/vrtc3/pkg/flv/amf"
 )
 
 const (

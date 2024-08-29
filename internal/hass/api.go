@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/internal/webrtc"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/internal/webrtc"
 )
 
 func apiOK(w http.ResponseWriter, r *http.Request) {
@@ -27,7 +27,7 @@ func apiStream(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// we can get three types of links:
-		// 1. link to go2rtc stream: rtsp://...:8554/{stream_name}
+		// 1. link to vrtc3 stream: rtsp://...:8554/{stream_name}
 		// 2. static link to Hass camera
 		// 3. dynamic link to Hass camera
 		if streams.Patch(v.Name, v.Channels.First.Url) != nil {

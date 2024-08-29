@@ -13,8 +13,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/internal/app"
 	"github.com/rs/zerolog"
+	"github.com/vtpl1/vrtc3/internal/app"
 )
 
 func Init() {
@@ -202,7 +202,7 @@ func middlewareAuth(username, password string, next http.Handler) http.Handler {
 		if !strings.HasPrefix(r.RemoteAddr, "127.") && !strings.HasPrefix(r.RemoteAddr, "[::1]") && r.RemoteAddr != "@" {
 			user, pass, ok := r.BasicAuth()
 			if !ok || user != username || pass != password {
-				w.Header().Set("Www-Authenticate", `Basic realm="go2rtc"`)
+				w.Header().Set("Www-Authenticate", `Basic realm="vrtc3"`)
 				http.Error(w, "Unauthorized", http.StatusUnauthorized)
 				return
 			}

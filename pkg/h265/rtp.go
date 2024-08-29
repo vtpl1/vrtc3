@@ -3,9 +3,9 @@ package h265
 import (
 	"encoding/binary"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/h264"
 )
 
 func RTPDepay(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
@@ -24,7 +24,7 @@ func RTPDepay(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
 		nuType := (data[0] >> 1) & 0x3F
 		//log.Printf("[RTP] codec: %s, nalu: %2d, size: %6d, ts: %10d, pt: %2d, ssrc: %d, seq: %d, %v", track.Codec.Name, nuType, len(packet.Payload), packet.Timestamp, packet.PayloadType, packet.SSRC, packet.SequenceNumber, packet.Marker)
 
-		// Fix for RtspServer https://github.com/AlexxIT/go2rtc/issues/244
+		// Fix for RtspServer https://github.com/vtpl1/vrtc3/issues/244
 		if packet.Marker && len(data) < h264.PSMaxSize {
 			switch nuType {
 			case NALUTypeVPS, NALUTypeSPS, NALUTypePPS:
@@ -121,7 +121,7 @@ func RTPPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 }
 
 // SafariPay - generate Safari friendly payload for H265
-// https://github.com/AlexxIT/Blog/issues/5
+// https://github.com/vtpl1/Blog/issues/5
 func SafariPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 	sequencer := rtp.NewRandomSequencer()
 	size := int(mtu - 12) // rtp.Header size

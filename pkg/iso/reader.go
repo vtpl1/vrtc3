@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"io"
 
-	"github.com/AlexxIT/go2rtc/pkg/bits"
+	"github.com/vtpl1/vrtc3/pkg/bits"
 )
 
 type Atom struct {

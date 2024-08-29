@@ -3,11 +3,11 @@ package webrtc
 import (
 	"errors"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/h264"
-	"github.com/AlexxIT/go2rtc/pkg/h265"
-	"github.com/AlexxIT/go2rtc/pkg/pcm"
 	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/h264"
+	"github.com/vtpl1/vrtc3/pkg/h265"
+	"github.com/vtpl1/vrtc3/pkg/pcm"
 )
 
 func (c *Conn) GetMedias() []*core.Media {
@@ -26,7 +26,7 @@ func (c *Conn) AddTrack(media *core.Media, codec *core.Codec, track *core.Receiv
 
 	switch c.Mode {
 	case core.ModePassiveConsumer: // video/audio for browser
-	case core.ModeActiveProducer: // go2rtc as WebRTC client (backchannel)
+	case core.ModeActiveProducer: // vrtc3 as WebRTC client (backchannel)
 	case core.ModePassiveProducer: // WebRTC/WHIP
 	default:
 		panic(core.Caller())
@@ -64,7 +64,7 @@ func (c *Conn) AddTrack(media *core.Media, codec *core.Codec, track *core.Receiv
 		}
 
 	case core.CodecPCMA, core.CodecPCMU, core.CodecPCM, core.CodecPCML:
-		// Fix audio quality https://github.com/AlexxIT/WebRTC/issues/500
+		// Fix audio quality https://github.com/vtpl1/WebRTC/issues/500
 		// should be before ResampleToG711, because it will be called last
 		sender.Handler = pcm.RepackG711(false, sender.Handler)
 

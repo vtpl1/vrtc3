@@ -20,8 +20,8 @@ type Track struct {
 func NewTrack(kind string) *Track {
 	return &Track{
 		kind:     kind,
-		id:       "go2rtc-" + kind,
-		streamID: "go2rtc",
+		id:       "vrtc3-" + kind,
+		streamID: "vrtc3",
 	}
 }
 
@@ -63,7 +63,7 @@ func (t *Track) Kind() webrtc.RTPCodecType {
 }
 
 func (t *Track) WriteRTP(payloadType uint8, packet *rtp.Packet) (err error) {
-	// using mutex because Unbind https://github.com/AlexxIT/go2rtc/issues/994
+	// using mutex because Unbind https://github.com/vtpl1/vrtc3/issues/994
 	t.mu.Lock()
 
 	// in case when we start WriteRTP before Track.Bind

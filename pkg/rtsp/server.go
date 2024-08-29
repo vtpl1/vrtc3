@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/tcp"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
 
 func NewServer(conn net.Conn) *Conn {
@@ -48,7 +48,7 @@ func (c *Conn) Accept() error {
 		if !c.auth.Validate(req) {
 			res := &tcp.Response{
 				Status:  "401 Unauthorized",
-				Header:  map[string][]string{"Www-Authenticate": {`Basic realm="go2rtc"`}},
+				Header:  map[string][]string{"Www-Authenticate": {`Basic realm="vrtc3"`}},
 				Request: req,
 			}
 			if err = c.WriteResponse(res); err != nil {

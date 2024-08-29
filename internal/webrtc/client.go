@@ -10,17 +10,17 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/internal/api/ws"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/webrtc"
 	"github.com/gorilla/websocket"
 	pion "github.com/pion/webrtc/v3"
+	"github.com/vtpl1/vrtc3/internal/api/ws"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/webrtc"
 )
 
 // streamsHandler supports:
 //  1. WHEP:    webrtc:http://192.168.1.123:1984/api/webrtc?src=camera1
-//  2. go2rtc:  webrtc:ws://192.168.1.123:1984/api/ws?src=camera1
+//  2. vrtc3:  webrtc:ws://192.168.1.123:1984/api/ws?src=camera1
 //  3. Wyze:    webrtc:http://192.168.1.123:5000/signaling/camera1?kvs#format=wyze
 //  4. Kinesis: webrtc:wss://...amazonaws.com/?...#format=kinesis#client_id=...#ice_servers=[{...},{...}]
 func streamsHandler(rawURL string) (core.Producer, error) {
@@ -62,7 +62,7 @@ func streamsHandler(rawURL string) (core.Producer, error) {
 	return nil, errors.New("unsupported url: " + rawURL)
 }
 
-// go2rtcClient can connect only to go2rtc server
+// go2rtcClient can connect only to vrtc3 server
 // ex: ws://localhost:1984/api/ws?src=camera1
 func go2rtcClient(url string) (core.Producer, error) {
 	// 1. Connect to signalign server

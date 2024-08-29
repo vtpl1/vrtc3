@@ -7,16 +7,16 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/app"
-	"github.com/AlexxIT/go2rtc/internal/srtp"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/hap"
-	"github.com/AlexxIT/go2rtc/pkg/hap/camera"
-	"github.com/AlexxIT/go2rtc/pkg/homekit"
-	"github.com/AlexxIT/go2rtc/pkg/mdns"
 	"github.com/rs/zerolog"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/app"
+	"github.com/vtpl1/vrtc3/internal/srtp"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/hap"
+	"github.com/vtpl1/vrtc3/pkg/hap/camera"
+	"github.com/vtpl1/vrtc3/pkg/homekit"
+	"github.com/vtpl1/vrtc3/pkg/mdns"
 )
 
 func Init() {
@@ -91,7 +91,7 @@ func Init() {
 			srv.hap.Handler = homekit.ProxyHandler(srv, dial)
 		} else {
 			// 2. Act as basic HomeKit camera
-			srv.accessory = camera.NewAccessory("AlexxIT", "go2rtc", name, "-", app.Version)
+			srv.accessory = camera.NewAccessory("vtpl1", "vrtc3", name, "-", app.Version)
 			srv.hap.Handler = homekit.ServerHandler(srv)
 		}
 

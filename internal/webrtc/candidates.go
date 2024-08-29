@@ -5,9 +5,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/AlexxIT/go2rtc/internal/api/ws"
-	"github.com/AlexxIT/go2rtc/pkg/webrtc"
 	pion "github.com/pion/webrtc/v3"
+	"github.com/vtpl1/vrtc3/internal/api/ws"
+	"github.com/vtpl1/vrtc3/pkg/webrtc"
 )
 
 type Address struct {

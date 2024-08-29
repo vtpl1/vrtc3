@@ -4,8 +4,8 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/stretchr/testify/require"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func TestRecursion(t *testing.T) {
@@ -13,7 +13,7 @@ func TestRecursion(t *testing.T) {
 	stream1 := New("from_yaml", "does_not_matter")
 	require.Len(t, streams, 1)
 
-	// ask another unnamed stream that links go2rtc
+	// ask another unnamed stream that links vrtc3
 	query, err := url.ParseQuery("src=rtsp://localhost:8554/from_yaml?video")
 	require.Nil(t, err)
 	stream2 := GetOrPatch(query)

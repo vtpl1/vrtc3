@@ -1,8 +1,8 @@
 package webrtc
 
 import (
-	"github.com/AlexxIT/go2rtc/pkg/core"
 	"github.com/pion/webrtc/v3"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func (c *Conn) GetTrack(media *core.Media, codec *core.Codec) (*core.Receiver, error) {
@@ -32,7 +32,7 @@ func (c *Conn) GetTrack(media *core.Media, codec *core.Codec) (*core.Receiver, e
 
 	case core.ModePassiveProducer, core.ModeActiveProducer:
 		// Passive producers: OBS Studio via WHIP or Browser
-		// Active producers: go2rtc as WebRTC client or WebTorrent
+		// Active producers: vrtc3 as WebRTC client or WebTorrent
 
 	default:
 		panic(core.Caller())

@@ -18,7 +18,7 @@ func TestSDP(t *testing.T) {
 		},
 	}}
 
-	data, err := MarshalSDP("go2rtc/1.0.0", medias)
+	data, err := MarshalSDP("vrtc3/1.0.0", medias)
 	assert.Empty(t, err)
 
 	sd := &sdp.SessionDescription{}

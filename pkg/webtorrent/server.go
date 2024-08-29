@@ -3,10 +3,11 @@ package webtorrent
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/gorilla/websocket"
 	"sync"
 	"time"
+
+	"github.com/gorilla/websocket"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 type Server struct {

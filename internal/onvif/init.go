@@ -9,13 +9,13 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/AlexxIT/go2rtc/internal/api"
-	"github.com/AlexxIT/go2rtc/internal/app"
-	"github.com/AlexxIT/go2rtc/internal/rtsp"
-	"github.com/AlexxIT/go2rtc/internal/streams"
-	"github.com/AlexxIT/go2rtc/pkg/core"
-	"github.com/AlexxIT/go2rtc/pkg/onvif"
 	"github.com/rs/zerolog"
+	"github.com/vtpl1/vrtc3/internal/api"
+	"github.com/vtpl1/vrtc3/internal/app"
+	"github.com/vtpl1/vrtc3/internal/rtsp"
+	"github.com/vtpl1/vrtc3/internal/streams"
+	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/onvif"
 )
 
 func Init() {
@@ -80,7 +80,7 @@ func onvifDeviceService(w http.ResponseWriter, r *http.Request) {
 
 	case onvif.ActionGetDeviceInformation:
 		// important for Hass: SerialNumber (unique server ID)
-		res = onvif.GetDeviceInformationResponse("", "go2rtc", app.Version, r.Host)
+		res = onvif.GetDeviceInformationResponse("", "vrtc3", app.Version, r.Host)
 
 	case onvif.ActionGetServiceCapabilities:
 		// important for Hass
