@@ -1,6 +1,11 @@
 package main
 
 import (
+	"context"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/vtpl1/vrtc3/internal/api"
 	"github.com/vtpl1/vrtc3/internal/api/ws"
 	"github.com/vtpl1/vrtc3/internal/app"
@@ -30,13 +35,16 @@ import (
 	"github.com/vtpl1/vrtc3/internal/srtp"
 	"github.com/vtpl1/vrtc3/internal/streams"
 	"github.com/vtpl1/vrtc3/internal/tapo"
+	"github.com/vtpl1/vrtc3/internal/videonetics"
 	"github.com/vtpl1/vrtc3/internal/webrtc"
 	"github.com/vtpl1/vrtc3/internal/webtorrent"
-	"github.com/vtpl1/vrtc3/pkg/shell"
 )
 
 func main() {
 	app.Version = "1.9.4"
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+	app.InternalTerminationRequest = make(chan int)
 
 	// 1. Core modules: app, api/ws, streams
 
@@ -83,6 +91,8 @@ func main() {
 	expr.Init()     // expr source
 	gopro.Init()    // gopro source
 
+	videonetics.Init(&ctx) // videonetics source
+
 	// 6. Helper modules
 
 	ngrok.Init() // ngrok module
@@ -90,6 +100,16 @@ func main() {
 	debug.Init() // debug API
 
 	// 7. Go
+	doShutdown := false
+	for !doShutdown {
+		select {
+		case <-ctx.Done():
+			doShutdown = true
+		case <-app.InternalTerminationRequest:
+			stop()
+			doShutdown = true
+		}
+	}
 
-	shell.RunUntilSignal()
+	// shell.RunUntilSignal()
 }

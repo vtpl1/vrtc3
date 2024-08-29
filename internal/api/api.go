@@ -245,8 +245,8 @@ func exitHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Code must be in the range [0, 125]", http.StatusBadRequest)
 		return
 	}
-
-	os.Exit(code)
+	app.InternalTerminationRequest <- 1
+	// os.Exit(code)
 }
 
 func restartHandler(w http.ResponseWriter, r *http.Request) {
@@ -263,7 +263,11 @@ func restartHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Debug().Msgf("[api] restart %s", path)
 
-	go syscall.Exec(path, os.Args, os.Environ())
+	go func() {
+		err := syscall.Exec(path, os.Args, os.Environ())
+		log.Error().Err(err).Msg("Restart failed")
+	}()
+	app.InternalTerminationRequest <- 1
 }
 
 func logHandler(w http.ResponseWriter, r *http.Request) {

@@ -20,6 +20,10 @@ func Now90000() uint32 {
 	return uint32(time.Duration(time.Now().UnixNano()) * 90000 / time.Second)
 }
 
+func TimeStamp90000(timeStamp int64) uint32 {
+	return uint32(time.Duration(timeStamp*1000000) * 90000 / time.Second)
+}
+
 const symbols = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_"
 
 // RandString base10 - numbers, base16 - hex, base36 - digits+letters

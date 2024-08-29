@@ -14,6 +14,7 @@ import (
 	"github.com/pion/rtcp"
 	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
+	"github.com/vtpl1/vrtc3/pkg/debug"
 	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
 
@@ -239,7 +240,11 @@ func (c *Conn) Handle() (err error) {
 
 			for _, receiver := range c.Receivers {
 				if receiver.ID == channelID {
-					receiver.WriteRTP(packet)
+					debug.Logger(func(packet1 *rtp.Packet) bool {
+						receiver.WriteRTP(packet1)
+						return true
+					})(packet)
+					// receiver.WriteRTP(packet)
 					break
 				}
 			}

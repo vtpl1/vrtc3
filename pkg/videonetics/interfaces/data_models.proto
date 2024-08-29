@@ -1,0 +1,192 @@
+syntax = "proto3";
+
+option java_multiple_files  = true;
+option java_package         = "io.grpc.DataModels";
+option go_package           = "videonetics.com/service";
+option java_outer_classname = "DataModelsProto";
+option objc_class_prefix    = "DM";
+option cc_enable_arenas     = true;
+
+package data_models;
+
+message Channel {
+  int64  site_id     = 1;
+  int64  channel_id  = 2;
+  int64  app_id      = 3;
+  int32  live_or_rec = 4;
+  int32  stream_type = 5;
+  int64  start_ts    = 6;
+  string session_id  = 7;
+}
+
+message Frame {
+  int32 media_type       = 1;
+  int32 frame_type       = 2;
+  int64 timestamp        = 3;
+  int32 bitrate          = 4;
+  int32 fps              = 5;
+  int32 motion_available = 6;
+  int32 ssrc             = 7;
+  int64 frame_id         = 8;
+  int64 buffer_size      = 9;
+  bytes buffer           = 10;
+}
+
+message ChannelAlteration {
+  string session_id = 1;
+  string command    = 2;
+
+  int32 frame_filter       = 3;
+  int32 movement_filter    = 4;
+  int32 recording_filter   = 5;
+  int32 criticality_filter = 6;
+
+  int64 seek_timestamp = 7;
+  float speed          = 8;
+
+  int64 origin_ts = 9;
+}
+
+message ObjectInfo {
+  uint32 x = 1;
+  uint32 y = 2;
+  uint32 w = 3;
+  uint32 h = 4;
+  uint32 t = 5;
+  uint32 c = 6;
+  int64  i = 7;
+}
+
+message PVAData {
+  string              object_id          = 1;
+  int32               site_id            = 2;
+  int32               channel_id         = 3;
+  int64               time_stamp         = 4;
+  int64               time_stamp_end     = 5;
+  int64               time_stamp_encoded = 6;
+  uint64              frame_id           = 7;
+  int32               vehicle_count      = 8;
+  int32               people_count       = 9;
+  int32               ref_width          = 10;
+  int32               ref_height         = 11;
+  repeated ObjectInfo object_list        = 12;
+}
+
+message MetaAttributeEvent {
+  int32  object_type             = 1;
+  int32  estimated_height        = 2;
+  string top_type                = 3;
+  string top_color               = 4;
+  string bottom_type             = 5;
+  string bottom_color            = 6;
+  string sex                     = 7;
+  string presence_of_bag         = 8;
+  string clothing_pattern        = 9;
+  string presence_of_head_dress  = 10;
+  string type_of_head_dress      = 11;
+  string associated_object       = 12;
+  string presence_of_long_sleeve = 13;
+  string vehicle_type            = 14;
+  string vehicle_color           = 15;
+  int64  event_time              = 16;
+  int32  channel_id              = 17;
+  int32  app_id                  = 18;
+  int32  track_id                = 19;
+  string unique_event_id         = 20;
+  string vehicle_license_number  = 21;
+}
+
+message EventDetails {
+  string engine_task_id      = 1;
+  string source_end_point_id = 2;
+  int64  start_time_stamp    = 3;
+  int64  end_time_stamp      = 4;
+  int32  zone_id             = 5;
+  int32  confidence          = 6;
+}
+
+message AttributeEvent {
+  string             object_id            = 1;
+  MetaAttributeEvent meta_attribute_event = 2;
+  int32              capbilities_type     = 3;
+  string             event_type           = 4;
+  EventDetails       event_details        = 5;
+  repeated string    event_snaps          = 6;
+
+  bool object_storage_or_file_system = 7;
+}
+
+message EventSnap {
+  string object_id = 1;
+  string snap      = 2;
+  string snap_id   = 3;
+
+  bytes image = 4;
+}
+
+message ObjectId {
+  string object_id_old = 1;
+  string object_id_new = 2;
+}
+
+message Account {
+  string object_id  = 1;
+  string username   = 2;
+  string password   = 3;
+  string secret_key = 4;
+  string roles      = 5;
+  string token      = 6;
+}
+
+message CapabilitiesType {
+  string object_id         = 1;
+  string name              = 2;
+  string capabilities_type = 3;
+}
+
+message Meta {
+  int64 index       = 1;
+  int64 max_results = 2;
+  int64 total       = 3;
+}
+
+message Error {
+  int64  code      = 1;
+  string message   = 2;
+  int64  exit_code = 3;
+}
+
+message VVideoClip {
+  int64  id                   = 1;
+  int32  channel_id           = 2;
+  string media_server_id      = 3;
+  int64  start_timestamp      = 4;
+  int64  end_timestamp        = 5;
+  int64  clip_size            = 6;
+  string clip_url             = 7;
+  string parallel_clip_url    = 8;
+  int32  junk_flag            = 9;
+  int32  dont_delete          = 10;
+  int32  incident_bookmark    = 11;
+  int32  dr_file_fatch_status = 12;
+  int64  secondary_id         = 13;
+  int32  backup_state         = 14;
+  string storage_path         = 15;
+  int32  stream_and_clip_mode = 16;
+}
+
+message ChannelClipId {
+  int32 channel_id          = 1;
+  int32 last_synced_clip_id = 2;
+}
+
+message Status {
+  int32 val = 1;
+}
+
+message FramePVA {
+  Channel channel = 1;
+  Frame   frame   = 2;
+  PVAData pva     = 3;
+  Status  status  = 4;
+}

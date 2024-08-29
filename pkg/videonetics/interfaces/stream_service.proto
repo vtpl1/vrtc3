@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+option java_multiple_files  = true;
+option java_package         = "io.grpc.StreamService";
+option go_package           = "videonetics.com/service";
+option java_outer_classname = "StreamServiceProto";
+option objc_class_prefix    = "SS";
+option cc_enable_arenas     = true;
+
+package stream_service;
+
+import "data_models.proto";
+
+service StreamService {
+  rpc WriteFrame(stream WriteFrameRequest) returns (WriteFrameResponse) {
+  }
+  rpc ReadFrame(ReadFrameRequest) returns (stream ReadFrameResponse) {
+  }
+
+  rpc SetChannelAlteration(SetChannelAlterationRequest) returns (SetChannelAlterationResponse) {
+  }
+  rpc GetChannelAlteration(GetChannelAlterationRequest) returns (GetChannelAlterationResponse) {
+  }
+
+  rpc WritePVAData(stream WritePVADataRequest) returns (WritePVADataResponse) {
+  }
+  rpc ReadPVAData(ReadPVADataRequest) returns (stream ReadPVADataResponse) {
+  }
+
+  rpc WriteFramePVA(stream WriteFramePVARequest) returns (WriteFramePVAResponse) {
+  }
+  rpc ReadFramePVA(ReadFramePVARequest) returns (stream ReadFramePVAResponse) {
+  }
+}
+
+message WriteFrameRequest {
+  data_models.Channel channel = 1;
+  data_models.Frame   frame   = 2;
+}
+
+message WriteFrameResponse {
+  data_models.Channel channel = 1;
+  data_models.Error   err     = 2;
+}
+
+message ReadFrameRequest {
+  data_models.Channel channel = 1;
+}
+
+message ReadFrameResponse {
+  data_models.Channel channel = 1;
+  data_models.Frame   frame   = 2;
+  data_models.Error   err     = 3;
+}
+
+message WriteFramePVARequest {
+  data_models.FramePVA frame_pva = 1;
+}
+
+message WriteFramePVAResponse {
+  data_models.Channel channel = 1;
+  data_models.Error   error   = 2;
+}
+
+message ReadFramePVARequest {
+  data_models.Channel channel = 1;
+}
+
+message ReadFramePVAResponse {
+  data_models.FramePVA frame_pva = 1;
+  data_models.Error    error     = 2;
+}
+
+message SetChannelAlterationRequest {
+  data_models.ChannelAlteration alteration = 1;
+}
+
+message SetChannelAlterationResponse {
+  int32 err_code = 1;
+}
+
+message GetChannelAlterationRequest {
+  string session_id = 1;
+}
+
+message GetChannelAlterationResponse {
+  data_models.ChannelAlteration alteration = 1;
+  int32                         err_code   = 2;
+}
+
+message WritePVADataRequest {
+  data_models.Channel channel  = 1;
+  data_models.PVAData pva_data = 2;
+}
+
+message WritePVADataResponse {
+  data_models.Channel channel = 1;
+  data_models.Error   err     = 2;
+}
+
+message ReadPVADataRequest {
+  data_models.Channel channel = 1;
+}
+
+message ReadPVADataResponse {
+  data_models.Channel channel  = 1;
+  data_models.PVAData pva_data = 2;
+  data_models.Error   err      = 3;
+}

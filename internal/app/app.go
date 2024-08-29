@@ -14,6 +14,8 @@ var (
 	UserAgent  string
 	ConfigPath string
 	Info       = make(map[string]any)
+	// InternalTerminationRequest is a channel to signal termination
+	InternalTerminationRequest chan int
 )
 
 const usage = `Usage of vrtc3:
