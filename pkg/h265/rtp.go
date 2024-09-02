@@ -109,6 +109,8 @@ func RTPPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 			clone := rtp.Packet{
 				Header: rtp.Header{
 					Version:        2,
+					PayloadType:    99,
+					SSRC:           packet.SSRC,
 					Marker:         i == last,
 					SequenceNumber: sequencer.NextSequenceNumber(),
 					Timestamp:      packet.Timestamp,

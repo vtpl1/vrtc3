@@ -19,11 +19,10 @@ type Conn struct {
 	conn    *grpc.ClientConn
 	host    string
 	channel Channel
+	stream  pb.StreamService_ReadFrameClient
 
 	state   State
 	stateMu sync.Mutex
-	stream  pb.StreamService_ReadFramePVAClient
-
 	handler core.HandlerFunc
 }
 

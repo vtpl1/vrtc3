@@ -123,6 +123,8 @@ func RTPPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 				Header: rtp.Header{
 					Version:        2,
 					Marker:         i == last,
+					PayloadType:    96,
+					SSRC:           packet.SSRC,
 					SequenceNumber: sequencer.NextSequenceNumber(),
 					Timestamp:      packet.Timestamp,
 				},

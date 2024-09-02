@@ -8,6 +8,7 @@ vrtc3_linux*
 vrtc3_mac*
 vrtc3_win*
 vrtc3
+*.exe
 
 0_test.go
 

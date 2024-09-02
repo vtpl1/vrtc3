@@ -8,7 +8,6 @@ import (
 	"github.com/pion/rtp"
 	"github.com/rs/zerolog/log"
 	"github.com/vtpl1/vrtc3/pkg/core"
-	"github.com/vtpl1/vrtc3/pkg/debug"
 	"github.com/vtpl1/vrtc3/pkg/h264"
 	"github.com/vtpl1/vrtc3/pkg/h264/annexb"
 	"github.com/vtpl1/vrtc3/pkg/h265"
@@ -73,7 +72,7 @@ func (c *Conn) describe() (err error) {
 		log.Info().Msgf("[videonetics] Describe end")
 	}()
 	serviceClient := pb.NewStreamServiceClient(c.conn)
-	stream, err := serviceClient.ReadFramePVA(*c.ctx, &pb.ReadFramePVARequest{Channel: &pb.Channel{
+	stream, err := serviceClient.ReadFrame(*c.ctx, &pb.ReadFrameRequest{Channel: &pb.Channel{
 		SiteId:     c.channel.SiteID,
 		ChannelId:  c.channel.ChannelID,
 		AppId:      c.channel.AppID,
@@ -105,8 +104,8 @@ dd:
 			return errors.New("sps pps vps not received yet")
 		}
 		totalFrameReceived++
-		mediaType := response.GetFramePva().GetFrame().GetMediaType()
-		buffer := response.GetFramePva().GetFrame().GetBuffer()
+		mediaType := response.GetFrame().GetMediaType()
+		buffer := response.GetFrame().GetBuffer()
 		fmt.Printf("buff %v\n", buffer)
 		switch mediaType {
 		case 2:
@@ -210,17 +209,15 @@ func (c *Conn) GetTrack(media *core.Media, codec *core.Codec) (*core.Receiver, e
 	var i int = 0
 	track.ID = byte(i)
 	c.Receivers = append(c.Receivers, track)
+
 	for _, receiver := range c.Receivers {
+		c.handler = func(packet *rtp.Packet) {
+			receiver.WriteRTP(packet)
+		}
 		if receiver.Codec.Name == "H264" {
-			c.handler = h264.RTPPay(0, debug.Logger(func(packet *rtp.Packet) bool {
-				receiver.WriteRTP(packet)
-				return true
-			}))
+			c.handler = h264.RTPPay(1412, c.handler)
 		} else if receiver.Codec.Name == "H265" {
-			c.handler = h265.RTPPay(0, debug.Logger(func(packet *rtp.Packet) bool {
-				receiver.WriteRTP(packet)
-				return true
-			}))
+			c.handler = h265.RTPPay(1412, c.handler)
 		}
 	}
 	return track, nil
@@ -265,19 +262,32 @@ func (c *Conn) readFramePVA() (err error) {
 			c.stream = nil
 			return err
 		}
-		if response.GetFramePva().GetFrame().FrameType > 2 {
-			continue
-		}
-		payload := response.GetFramePva().GetFrame().Buffer
+		// if response.GetFramePva().GetFrame().FrameType > 2 {
+		// 	continue
+		// }
+		payload := response.GetFrame().Buffer
 		size := len(payload)
 		c.Recv += int(size)
-		timeStamp := core.TimeStamp90000(response.GetFramePva().GetFrame().Timestamp)
-		fmt.Printf("...... readFramePVA:  %d\n", size)
+		timeStamp := core.TimeStamp90000(response.GetFrame().Timestamp)
+		// fmt.Printf("...... readFramePVA:  %d\n", size)
 		// timeStamp := uint32(response.GetFramePva().GetFrame().Timestamp)
 		packet := &rtp.Packet{
-			Header:  rtp.Header{Timestamp: timeStamp},
+			Header:  rtp.Header{Timestamp: timeStamp, SSRC: 9582},
 			Payload: annexb.EncodeToAVCC(payload),
 		}
+		// for _, receiver := range c.Receivers {
+		// 	if receiver.Codec.Name == "H264" {
+		// 		h264.RTPPay(1412, debug.Logger(func(packet *rtp.Packet) bool {
+		// 			receiver.WriteRTP(packet)
+		// 			return true
+		// 		}))(packet)
+		// 	} else if receiver.Codec.Name == "H265" {
+		// 		h265.RTPPay(1412, debug.Logger(func(packet *rtp.Packet) bool {
+		// 			receiver.WriteRTP(packet)
+		// 			return true
+		// 		}))(packet)
+		// 	}
+		// }
 		c.handler(packet)
 	}
 
