@@ -100,13 +100,15 @@ dd:
 			c.stream = nil
 			return err
 		}
-		if totalFrameReceived > 10 {
+		if totalFrameReceived > 32 {
+			log.Info().Msgf("[videonetics] sps pps vps not received yet %v", totalFrameReceived)
 			return errors.New("sps pps vps not received yet")
 		}
 		totalFrameReceived++
 		mediaType := response.GetFrame().GetMediaType()
+		frameType := response.GetFrame().GetFrameType()
 		buffer := response.GetFrame().GetBuffer()
-		fmt.Printf("buff %v\n", buffer)
+		fmt.Printf("[videonetics] mediaType %v frameType %v\n", mediaType, frameType)
 		switch mediaType {
 		case 2:
 			switch h264.NALUType(buffer) {
@@ -167,9 +169,9 @@ dd:
 		}
 
 		// c.Medias = append(c.Medias, )
-		if totalFrameReceived > 2 {
-			break
-		}
+		// if totalFrameReceived > 32 {
+		// 	break
+		// }
 	}
 
 	return
