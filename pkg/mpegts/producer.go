@@ -5,7 +5,6 @@ import (
 	"io"
 	"time"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/aac"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
@@ -157,7 +156,7 @@ func StreamType(codec *core.Codec) uint8 {
 	return 0
 }
 
-func TimestampToRTP(rtp *rtp.Packet, codec *core.Codec) {
+func TimestampToRTP(rtp *core.Packet, codec *core.Codec) {
 	if codec.ClockRate == ClockRate {
 		return
 	}

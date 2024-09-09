@@ -47,7 +47,7 @@ type Producer interface {
 	// - sendonly for Producer backchannel
 	GetMedias() []*Media
 
-	// GetTrack - return Receiver, that can only produce rtp.Packet(s)
+	// GetTrack - return Receiver, that can only produce core.Packet(s)
 	GetTrack(media *Media, codec *Codec) (*Receiver, error)
 
 	// Deprecated: rename to Run()

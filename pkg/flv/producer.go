@@ -254,7 +254,7 @@ func (c *Producer) readHeader() error {
 	return nil
 }
 
-func (c *Producer) readPacket() (*rtp.Packet, error) {
+func (c *Producer) readPacket() (*core.Packet, error) {
 	// https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf
 	b := make([]byte, 4+11)
 	if _, err := io.ReadFull(c.rd, b); err != nil {
@@ -265,7 +265,7 @@ func (c *Producer) readPacket() (*rtp.Packet, error) {
 
 	size := uint32(b[1])<<16 | uint32(b[2])<<8 | uint32(b[3])
 
-	pkt := &rtp.Packet{
+	pkt := &core.Packet{
 		Header: rtp.Header{
 			PayloadType: b[0],
 			Timestamp:   uint32(b[4])<<16 | uint32(b[5])<<8 | uint32(b[6]) | uint32(b[7])<<24,

@@ -279,7 +279,7 @@ func (c *Client) worker(buffer chan []byte) {
 			time.Sleep(d)
 
 			// can be SPS, PPS and IFrame in one packet
-			packet := &rtp.Packet{
+			packet := &core.Packet{
 				// ivideon clockrate=1000, RTP clockrate=90000
 				Header:  rtp.Header{Timestamp: ts * 90},
 				Payload: data[:size],

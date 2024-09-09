@@ -3,7 +3,6 @@ package isapi
 import (
 	"encoding/json"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
@@ -18,7 +17,7 @@ func (c *Client) GetTrack(media *core.Media, codec *core.Codec) (*core.Receiver,
 func (c *Client) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiver) error {
 	if c.sender == nil {
 		c.sender = core.NewSender(media, track.Codec)
-		c.sender.Handler = func(packet *rtp.Packet) {
+		c.sender.Handler = func(packet *core.Packet) {
 			if c.conn == nil {
 				return
 			}

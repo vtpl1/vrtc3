@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"image/jpeg"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/y4m"
 )
@@ -41,7 +40,7 @@ func FixJPEG(b []byte) []byte {
 func Encoder(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
 	newImage := y4m.NewImage(codec.FmtpLine)
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		img := newImage(packet.Payload)
 
 		buf := bytes.NewBuffer(nil)

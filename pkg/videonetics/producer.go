@@ -213,7 +213,7 @@ func (c *Conn) GetTrack(media *core.Media, codec *core.Codec) (*core.Receiver, e
 	c.Receivers = append(c.Receivers, track)
 
 	for _, receiver := range c.Receivers {
-		c.handler = func(packet *rtp.Packet) {
+		c.handler = func(packet *core.Packet) {
 			receiver.WriteRTP(packet)
 		}
 		if receiver.Codec.Name == "H264" {
@@ -273,18 +273,18 @@ func (c *Conn) readFramePVA() (err error) {
 		timeStamp := core.TimeStamp90000(response.GetFrame().Timestamp)
 		// fmt.Printf("...... readFramePVA:  %d\n", size)
 		// timeStamp := uint32(response.GetFramePva().GetFrame().Timestamp)
-		packet := &rtp.Packet{
+		packet := &core.Packet{
 			Header:  rtp.Header{Timestamp: timeStamp, SSRC: 9582},
 			Payload: annexb.EncodeToAVCC(payload),
 		}
 		// for _, receiver := range c.Receivers {
 		// 	if receiver.Codec.Name == "H264" {
-		// 		h264.RTPPay(1412, debug.Logger(func(packet *rtp.Packet) bool {
+		// 		h264.RTPPay(1412, debug.Logger(func(packet *core.Packet) bool {
 		// 			receiver.WriteRTP(packet)
 		// 			return true
 		// 		}))(packet)
 		// 	} else if receiver.Codec.Name == "H265" {
-		// 		h265.RTPPay(1412, debug.Logger(func(packet *rtp.Packet) bool {
+		// 		h265.RTPPay(1412, debug.Logger(func(packet *core.Packet) bool {
 		// 			receiver.WriteRTP(packet)
 		// 			return true
 		// 		}))(packet)

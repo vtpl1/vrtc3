@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
@@ -36,7 +35,7 @@ func NewConsumer() *Consumer {
 
 func (c *Consumer) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiver) error {
 	sender := core.NewSender(media, track.Codec)
-	sender.Handler = func(packet *rtp.Packet) {
+	sender.Handler = func(packet *core.Packet) {
 		if n, err := c.wr.Write([]byte(frameHdr)); err == nil {
 			c.Send += n
 		}

@@ -3,8 +3,8 @@ package webrtc
 import (
 	"sync"
 
-	"github.com/pion/rtp"
 	"github.com/pion/webrtc/v3"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 type Track struct {
@@ -62,7 +62,7 @@ func (t *Track) Kind() webrtc.RTPCodecType {
 	return webrtc.NewRTPCodecType(t.kind)
 }
 
-func (t *Track) WriteRTP(payloadType uint8, packet *rtp.Packet) (err error) {
+func (t *Track) WriteRTP(payloadType uint8, packet *core.Packet) (err error) {
 	// using mutex because Unbind https://github.com/vtpl1/vrtc3/issues/994
 	t.mu.Lock()
 

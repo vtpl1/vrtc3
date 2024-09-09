@@ -3,7 +3,6 @@ package magic
 import (
 	"io"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
 	"github.com/vtpl1/vrtc3/pkg/h264/annexb"
@@ -46,7 +45,7 @@ func (k *Keyframe) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 
 	switch track.Codec.Name {
 	case core.CodecH264:
-		sender.Handler = func(packet *rtp.Packet) {
+		sender.Handler = func(packet *core.Packet) {
 			if !h264.IsKeyframe(packet.Payload) {
 				return
 			}
@@ -63,7 +62,7 @@ func (k *Keyframe) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 		}
 
 	case core.CodecH265:
-		sender.Handler = func(packet *rtp.Packet) {
+		sender.Handler = func(packet *core.Packet) {
 			if !h265.IsKeyframe(packet.Payload) {
 				return
 			}
@@ -78,7 +77,7 @@ func (k *Keyframe) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 		}
 
 	case core.CodecJPEG:
-		sender.Handler = func(packet *rtp.Packet) {
+		sender.Handler = func(packet *core.Packet) {
 			if n, err := k.wr.Write(packet.Payload); err == nil {
 				k.Send += n
 			}

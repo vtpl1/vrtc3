@@ -7,13 +7,14 @@ import (
 	"github.com/pion/rtcp"
 	"github.com/pion/rtp"
 	"github.com/pion/srtp/v2"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 type Session struct {
 	Local  *Endpoint
 	Remote *Endpoint
 
-	OnReadRTP func(packet *rtp.Packet)
+	OnReadRTP func(packet *core.Packet)
 
 	Recv int // bytes recv
 	Send int // bytes send
@@ -68,7 +69,7 @@ func (s *Session) init() error {
 	return nil
 }
 
-func (s *Session) WriteRTP(packet *rtp.Packet) (int, error) {
+func (s *Session) WriteRTP(packet *core.Packet) (int, error) {
 	if s.Local.srtp == nil {
 		return 0, nil // before init call
 	}
@@ -79,7 +80,7 @@ func (s *Session) WriteRTP(packet *rtp.Packet) (int, error) {
 		_, _ = s.WriteRTCP(&s.senderRTCP)
 	}
 
-	clone := rtp.Packet{
+	clone := core.Packet{
 		Header: rtp.Header{
 			Version:        2,
 			Marker:         packet.Marker,
@@ -120,7 +121,7 @@ func (s *Session) WriteRTCP(packet rtcp.Packet) (int, error) {
 }
 
 func (s *Session) ReadRTP(b []byte) {
-	packet := &rtp.Packet{}
+	packet := &core.Packet{}
 
 	b, err := s.Remote.srtp.DecryptRTP(nil, b, &packet.Header)
 	if err != nil {

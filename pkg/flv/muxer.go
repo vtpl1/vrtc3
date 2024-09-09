@@ -4,7 +4,6 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/flv/amf"
 	"github.com/vtpl1/vrtc3/pkg/h264"
@@ -76,7 +75,7 @@ func (m *Muxer) GetInit() []byte {
 	return b
 }
 
-func (m *Muxer) GetPayloader(codec *core.Codec) func(packet *rtp.Packet) []byte {
+func (m *Muxer) GetPayloader(codec *core.Codec) func(packet *core.Packet) []byte {
 	m.codecs = append(m.codecs, codec)
 
 	var ts0 uint32
@@ -86,7 +85,7 @@ func (m *Muxer) GetPayloader(codec *core.Codec) func(packet *rtp.Packet) []byte 
 	case core.CodecH264:
 		buf := encodeAVData(codec, 1)
 
-		return func(packet *rtp.Packet) []byte {
+		return func(packet *core.Packet) []byte {
 			if h264.IsKeyframe(packet.Payload) {
 				buf[0] = 1<<4 | 7
 			} else {
@@ -106,7 +105,7 @@ func (m *Muxer) GetPayloader(codec *core.Codec) func(packet *rtp.Packet) []byte 
 	case core.CodecAAC:
 		buf := encodeAVData(codec, 1)
 
-		return func(packet *rtp.Packet) []byte {
+		return func(packet *core.Packet) []byte {
 			buf = append(buf[:2], packet.Payload...)
 
 			if ts0 == 0 {

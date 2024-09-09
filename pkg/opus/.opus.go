@@ -4,14 +4,13 @@ import (
 	"log"
 	"time"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
 func Log(handler core.HandlerFunc) core.HandlerFunc {
 	var ts uint32
 
-	return func(pkt *rtp.Packet) {
+	return func(pkt *core.Packet) {
 		if ts == 0 {
 			ts = pkt.Timestamp
 		}

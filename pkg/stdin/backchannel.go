@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
@@ -24,7 +23,7 @@ func (c *Client) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiver
 		}
 
 		c.sender = core.NewSender(media, track.Codec)
-		c.sender.Handler = func(packet *rtp.Packet) {
+		c.sender.Handler = func(packet *core.Packet) {
 			_, _ = stdin.Write(packet.Payload)
 			c.send += len(packet.Payload)
 		}

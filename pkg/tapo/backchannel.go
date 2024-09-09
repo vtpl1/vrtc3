@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"strconv"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/mpegts"
 )
@@ -22,7 +21,7 @@ func (c *Client) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiver
 		}
 
 		c.sender = core.NewSender(media, track.Codec)
-		c.sender.Handler = func(packet *rtp.Packet) {
+		c.sender.Handler = func(packet *core.Packet) {
 			b := muxer.GetPayload(pid, packet.Timestamp, packet.Payload)
 			_ = c.WriteBackchannel(b)
 		}

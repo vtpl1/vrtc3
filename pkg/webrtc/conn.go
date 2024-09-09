@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/pion/rtcp"
-	"github.com/pion/rtp"
 	"github.com/pion/webrtc/v3"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
@@ -102,7 +101,7 @@ func NewConn(pc *webrtc.PeerConnection) *Conn {
 
 			c.Recv += n
 
-			packet := &rtp.Packet{}
+			packet := &core.Packet{}
 			if err := packet.Unmarshal(b[:n]); err != nil {
 				return
 			}

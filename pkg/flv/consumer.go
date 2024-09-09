@@ -3,7 +3,6 @@ package flv
 import (
 	"io"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/aac"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
@@ -52,7 +51,7 @@ func (c *Consumer) AddTrack(media *core.Media, codec *core.Codec, track *core.Re
 	case core.CodecH264:
 		payload := c.muxer.GetPayloader(track.Codec)
 
-		sender.Handler = func(pkt *rtp.Packet) {
+		sender.Handler = func(pkt *core.Packet) {
 			b := payload(pkt)
 			if n, err := c.wr.Write(b); err == nil {
 				c.Send += n
@@ -68,7 +67,7 @@ func (c *Consumer) AddTrack(media *core.Media, codec *core.Codec, track *core.Re
 	case core.CodecAAC:
 		payload := c.muxer.GetPayloader(track.Codec)
 
-		sender.Handler = func(pkt *rtp.Packet) {
+		sender.Handler = func(pkt *core.Packet) {
 			b := payload(pkt)
 			if n, err := c.wr.Write(b); err == nil {
 				c.Send += n

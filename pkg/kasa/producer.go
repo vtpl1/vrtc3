@@ -109,7 +109,7 @@ func (c *Producer) Start() error {
 		case MimeVideo:
 			if video != nil {
 				ts := GetTimestamp(header)
-				pkt := &rtp.Packet{
+				pkt := &core.Packet{
 					Header: rtp.Header{
 						Timestamp: uint32(ts * 90000),
 					},
@@ -121,7 +121,7 @@ func (c *Producer) Start() error {
 		case MimeG711U:
 			if audio != nil {
 				ts := GetTimestamp(header)
-				pkt := &rtp.Packet{
+				pkt := &core.Packet{
 					Header: rtp.Header{
 						Version:   2,
 						Marker:    true,

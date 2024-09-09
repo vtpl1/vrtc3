@@ -3,7 +3,6 @@ package mpegts
 import (
 	"io"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/aac"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
@@ -54,7 +53,7 @@ func (c *Consumer) AddTrack(media *core.Media, codec *core.Codec, track *core.Re
 	case core.CodecH264:
 		pid := c.muxer.AddTrack(StreamTypeH264)
 
-		sender.Handler = func(pkt *rtp.Packet) {
+		sender.Handler = func(pkt *core.Packet) {
 			b := c.muxer.GetPayload(pid, pkt.Timestamp, pkt.Payload)
 			if n, err := c.wr.Write(b); err == nil {
 				c.Send += n
@@ -70,7 +69,7 @@ func (c *Consumer) AddTrack(media *core.Media, codec *core.Codec, track *core.Re
 	case core.CodecH265:
 		pid := c.muxer.AddTrack(StreamTypeH265)
 
-		sender.Handler = func(pkt *rtp.Packet) {
+		sender.Handler = func(pkt *core.Packet) {
 			b := c.muxer.GetPayload(pid, pkt.Timestamp, pkt.Payload)
 			if n, err := c.wr.Write(b); err == nil {
 				c.Send += n
@@ -87,7 +86,7 @@ func (c *Consumer) AddTrack(media *core.Media, codec *core.Codec, track *core.Re
 		// convert timestamp to 90000Hz clock
 		dt := 90000 / float64(track.Codec.ClockRate)
 
-		sender.Handler = func(pkt *rtp.Packet) {
+		sender.Handler = func(pkt *core.Packet) {
 			pts := uint32(float64(pkt.Timestamp) * dt)
 			b := c.muxer.GetPayload(pid, pts, pkt.Payload)
 			if n, err := c.wr.Write(b); err == nil {
@@ -116,7 +115,7 @@ func (c *Consumer) WriteTo(wr io.Writer) (int64, error) {
 	return c.wr.WriteTo(wr)
 }
 
-//func TimestampFromRTP(rtp *rtp.Packet, codec *core.Codec) {
+//func TimestampFromRTP(rtp *core.Packet, codec *core.Codec) {
 //	if codec.ClockRate == ClockRate {
 //		return
 //	}

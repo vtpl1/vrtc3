@@ -7,7 +7,6 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
@@ -15,7 +14,7 @@ func RepairAVCC(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
 	sps, pps := GetParameterSet(codec.FmtpLine)
 	ps := JoinNALU(sps, pps)
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		if NALUType(packet.Payload) == NALUTypeIFrame {
 			packet.Payload = Join(ps, packet.Payload)
 		}

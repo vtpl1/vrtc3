@@ -7,7 +7,6 @@ import (
 	"net"
 	"time"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
 	"github.com/vtpl1/vrtc3/pkg/hap/camera"
@@ -139,14 +138,14 @@ func (c *Consumer) AddTrack(media *core.Media, codec *core.Codec, track *core.Re
 	if c.deadline == nil {
 		c.deadline = time.NewTimer(time.Second * 30)
 
-		sender.Handler = func(packet *rtp.Packet) {
+		sender.Handler = func(packet *core.Packet) {
 			c.deadline.Reset(core.ConnDeadline)
 			if n, err := session.WriteRTP(packet); err == nil {
 				c.Send += n
 			}
 		}
 	} else {
-		sender.Handler = func(packet *rtp.Packet) {
+		sender.Handler = func(packet *core.Packet) {
 			if n, err := session.WriteRTP(packet); err == nil {
 				c.Send += n
 			}

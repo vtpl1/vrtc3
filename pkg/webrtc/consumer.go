@@ -3,7 +3,6 @@ package webrtc
 import (
 	"errors"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
 	"github.com/vtpl1/vrtc3/pkg/h265"
@@ -40,7 +39,7 @@ func (c *Conn) AddTrack(media *core.Media, codec *core.Codec, track *core.Receiv
 	payloadType := codec.PayloadType
 
 	sender := core.NewSender(media, codec)
-	sender.Handler = func(packet *rtp.Packet) {
+	sender.Handler = func(packet *core.Packet) {
 		c.Send += packet.MarshalSize()
 		//important to send with remote PayloadType
 		_ = localTrack.WriteRTP(payloadType, packet)

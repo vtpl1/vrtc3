@@ -3,7 +3,6 @@ package mp4
 import (
 	"encoding/hex"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
 	"github.com/vtpl1/vrtc3/pkg/h265"
@@ -118,7 +117,7 @@ func (m *Muxer) Reset() {
 	}
 }
 
-func (m *Muxer) GetPayload(trackID byte, packet *rtp.Packet) []byte {
+func (m *Muxer) GetPayload(trackID byte, packet *core.Packet) []byte {
 	codec := m.codecs[trackID]
 
 	m.index++

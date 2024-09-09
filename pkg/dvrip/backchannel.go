@@ -4,7 +4,6 @@ import (
 	"encoding/binary"
 	"time"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
@@ -60,7 +59,7 @@ func (c *Backchannel) AddTrack(media *core.Media, _ *core.Codec, track *core.Rec
 	var payload []byte
 
 	sender := core.NewSender(media, track.Codec)
-	sender.Handler = func(packet *rtp.Packet) {
+	sender.Handler = func(packet *core.Packet) {
 		payload = append(payload, packet.Payload...)
 
 		for len(payload) >= PacketSize {

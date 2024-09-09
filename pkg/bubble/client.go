@@ -227,7 +227,7 @@ func (c *Client) Handle() error {
 				continue
 			}
 
-			pkt := &rtp.Packet{
+			pkt := &core.Packet{
 				Header: rtp.Header{
 					Timestamp: core.Now90000(),
 				},
@@ -247,7 +247,7 @@ func (c *Client) Handle() error {
 			//rate := binary.LittleEndian.Uint32(b[34:])  // sample rate
 			//width := binary.LittleEndian.Uint32(b[38:]) // samplewidth
 
-			pkt := &rtp.Packet{
+			pkt := &core.Packet{
 				Header: rtp.Header{
 					Version:   2,
 					Marker:    true,

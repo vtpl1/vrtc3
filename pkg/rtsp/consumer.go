@@ -95,12 +95,12 @@ func (c *Conn) packetWriter(codec *core.Codec, channel, payloadType uint8) core.
 		n = 0
 	}
 
-	handlerFunc := func(packet *rtp.Packet) {
+	handlerFunc := func(packet *core.Packet) {
 		if c.state == StateNone {
 			return
 		}
 
-		clone := rtp.Packet{
+		clone := core.Packet{
 			Header: rtp.Header{
 				Version:        2,
 				Marker:         packet.Marker,

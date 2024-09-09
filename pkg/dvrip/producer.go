@@ -51,7 +51,7 @@ func (c *Producer) Start() error {
 
 			c.videoTS += c.videoDT
 
-			packet := &rtp.Packet{
+			packet := &core.Packet{
 				Header:  rtp.Header{Timestamp: c.videoTS},
 				Payload: annexb.EncodeToAVCC(payload),
 			}
@@ -70,7 +70,7 @@ func (c *Producer) Start() error {
 			c.audioTS += uint32(len(payload))
 			c.audioSeq++
 
-			packet := &rtp.Packet{
+			packet := &core.Packet{
 				Header: rtp.Header{
 					Version:        2,
 					Marker:         true,

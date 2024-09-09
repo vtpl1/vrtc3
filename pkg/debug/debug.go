@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pion/rtp"
+	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
-func Logger(include func(packet *rtp.Packet) bool) func(packet *rtp.Packet) {
+func Logger(include func(packet *core.Packet) bool) func(packet *core.Packet) {
 	var lastTime = time.Now()
 	var lastTS uint32
 
@@ -16,7 +16,7 @@ func Logger(include func(packet *rtp.Packet) bool) func(packet *rtp.Packet) {
 	var secTS uint32
 	var secTime time.Time
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		if include != nil && !include(packet) {
 			return
 		}

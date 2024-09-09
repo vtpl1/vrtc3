@@ -8,7 +8,6 @@ import (
 	"encoding/binary"
 	"unicode/utf8"
 
-	"github.com/pion/rtp"
 	"github.com/sigurn/crc16"
 	"github.com/sigurn/crc8"
 	"github.com/vtpl1/vrtc3/pkg/core"
@@ -80,7 +79,7 @@ func FLACEncoder(codecName string, clockRate uint32, handler core.HandlerFunc) c
 
 	var sampleNumber int32
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		samples := uint16(len(packet.Payload))
 
 		if codecName == core.CodecPCM || codecName == core.CodecPCML {

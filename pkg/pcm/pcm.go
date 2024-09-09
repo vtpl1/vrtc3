@@ -44,7 +44,7 @@ func DownsampleByte(
 	var sampleN, sampleSum float32
 	var ts uint32
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		samples := len(packet.Payload)
 		newLen := uint32((float32(samples) + sampleN) / n)
 
@@ -74,7 +74,7 @@ func DownsampleByte(
 
 // LittleToBig - conver PCM little endian to PCM big endian
 func LittleToBig(handler core.HandlerFunc) core.HandlerFunc {
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		size := len(packet.Payload)
 		b := make([]byte, size)
 		for i := 0; i < size; i += 2 {
@@ -92,7 +92,7 @@ func LittleToBig(handler core.HandlerFunc) core.HandlerFunc {
 func ResamplePCM(fromPCM func(int16) byte, handler core.HandlerFunc) core.HandlerFunc {
 	var ts uint32
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		len1 := len(packet.Payload)
 		len2 := len1 / 2
 
@@ -120,7 +120,7 @@ func DownsamplePCM(fromPCM func(int16) byte, n float32, handler core.HandlerFunc
 	var sampleN, sampleSum float32
 	var ts uint32
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		samples := len(packet.Payload) / 2
 		newLen := uint32((float32(samples) + sampleN) / n)
 
@@ -162,7 +162,7 @@ func RepackG711(zeroTS bool, handler core.HandlerFunc) core.HandlerFunc {
 	// fix https://github.com/vtpl1/vrtc3/issues/432
 	var mu sync.Mutex
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		mu.Lock()
 
 		buf = append(buf, packet.Payload...)
@@ -171,7 +171,7 @@ func RepackG711(zeroTS bool, handler core.HandlerFunc) core.HandlerFunc {
 			return
 		}
 
-		pkt := &rtp.Packet{
+		pkt := &core.Packet{
 			Header: rtp.Header{
 				Version:        2,
 				Marker:         true,               // should be true

@@ -65,7 +65,7 @@ func (c *Producer) Start() error {
 			i += 2
 		}
 
-		pkt := &rtp.Packet{
+		pkt := &core.Packet{
 			Header:  rtp.Header{Timestamp: core.Now90000()},
 			Payload: buf[:i],
 		}

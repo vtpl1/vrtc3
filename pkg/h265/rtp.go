@@ -15,7 +15,7 @@ func RTPDepay(codec *core.Codec, handler core.HandlerFunc) core.HandlerFunc {
 	buf := make([]byte, 0, 512*1024) // 512K
 	var nuStart int
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		data := packet.Payload
 		if len(data) < 3 {
 			return
@@ -97,7 +97,7 @@ func RTPPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 	sequencer := rtp.NewRandomSequencer()
 	mtu -= 12 // rtp.Header size
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		if packet.Version != h264.RTPPacketVersionAVC {
 			handler(packet)
 			return
@@ -106,7 +106,7 @@ func RTPPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 		payloads := payloader.Payload(mtu, packet.Payload)
 		last := len(payloads) - 1
 		for i, payload := range payloads {
-			clone := rtp.Packet{
+			clone := core.Packet{
 				Header: rtp.Header{
 					Version:        2,
 					PayloadType:    99,
@@ -128,7 +128,7 @@ func SafariPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 	sequencer := rtp.NewRandomSequencer()
 	size := int(mtu - 12) // rtp.Header size
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		if packet.Version != h264.RTPPacketVersionAVC {
 			handler(packet)
 			return
@@ -161,7 +161,7 @@ func SafariPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 			i += size
 		}
 
-		// rtp.Packet payload
+		// core.Packet payload
 		b := make([]byte, 1, size)
 		size-- // minus header byte
 
@@ -180,7 +180,7 @@ func SafariPay(mtu uint16, handler core.HandlerFunc) core.HandlerFunc {
 				au = nil
 			}
 
-			clone := rtp.Packet{
+			clone := core.Packet{
 				Header: rtp.Header{
 					Version:        2,
 					Marker:         au == nil,

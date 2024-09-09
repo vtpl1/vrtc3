@@ -8,6 +8,7 @@ import (
 	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/aac"
 	"github.com/vtpl1/vrtc3/pkg/bits"
+	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264/annexb"
 )
 
@@ -29,7 +30,7 @@ func NewDemuxer() *Demuxer {
 
 const skipRead = 0xFF
 
-func (d *Demuxer) ReadPacket(rd io.Reader) (*rtp.Packet, error) {
+func (d *Demuxer) ReadPacket(rd io.Reader) (*core.Packet, error) {
 	for {
 		if d.pos != skipRead {
 			if _, err := io.ReadFull(rd, d.buf[:]); err != nil {
@@ -49,7 +50,7 @@ func (d *Demuxer) ReadPacket(rd io.Reader) (*rtp.Packet, error) {
 			case d.pmtID:
 				d.readPMT() // PMT : Program Map Table
 
-				pkt := &rtp.Packet{
+				pkt := &core.Packet{
 					Payload: make([]byte, 0, len(d.pes)),
 				}
 				for _, pes := range d.pes {
@@ -177,7 +178,7 @@ func (d *Demuxer) readPMT() {
 	d.skip(4) // CRC32
 }
 
-func (d *Demuxer) readPES(pid uint16, start bool) *rtp.Packet {
+func (d *Demuxer) readPES(pid uint16, start bool) *core.Packet {
 	pes := d.pes[pid]
 	if pes == nil {
 		return nil
@@ -357,10 +358,10 @@ func (p *PES) AppendBuffer(b []byte) {
 	p.Payload = append(p.Payload, b...)
 }
 
-func (p *PES) GetPacket() (pkt *rtp.Packet) {
+func (p *PES) GetPacket() (pkt *core.Packet) {
 	switch p.StreamType {
 	case StreamTypeH264, StreamTypeH265:
-		pkt = &rtp.Packet{
+		pkt = &core.Packet{
 			Header: rtp.Header{
 				PayloadType: p.StreamType,
 			},
@@ -378,7 +379,7 @@ func (p *PES) GetPacket() (pkt *rtp.Packet) {
 	case StreamTypeAAC:
 		p.Sequence++
 
-		pkt = &rtp.Packet{
+		pkt = &core.Packet{
 			Header: rtp.Header{
 				Version:        2,
 				Marker:         true,
@@ -395,7 +396,7 @@ func (p *PES) GetPacket() (pkt *rtp.Packet) {
 	case StreamTypePCMATapo:
 		p.Sequence++
 
-		pkt = &rtp.Packet{
+		pkt = &core.Packet{
 			Header: rtp.Header{
 				Version:        2,
 				Marker:         true,
@@ -412,7 +413,7 @@ func (p *PES) GetPacket() (pkt *rtp.Packet) {
 	case StreamTypePrivateOPUS:
 		p.Sequence++
 
-		pkt = &rtp.Packet{
+		pkt = &core.Packet{
 			Header: rtp.Header{
 				Version:        2,
 				Marker:         true,

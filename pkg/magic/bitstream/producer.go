@@ -80,7 +80,7 @@ func (c *Producer) Start() error {
 			}
 
 			if len(c.Receivers) > 0 {
-				pkt := &rtp.Packet{
+				pkt := &core.Packet{
 					Header:  rtp.Header{Timestamp: core.Now90000()},
 					Payload: annexb.EncodeToAVCC(buf[:i]),
 				}

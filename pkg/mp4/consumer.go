@@ -5,7 +5,6 @@ import (
 	"io"
 	"sync"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/aac"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
@@ -68,7 +67,7 @@ func (c *Consumer) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 
 	switch track.Codec.Name {
 	case core.CodecH264:
-		handler.Handler = func(packet *rtp.Packet) {
+		handler.Handler = func(packet *core.Packet) {
 			if !c.start {
 				if !h264.IsKeyframe(packet.Payload) {
 					return
@@ -92,7 +91,7 @@ func (c *Consumer) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 		}
 
 	case core.CodecH265:
-		handler.Handler = func(packet *rtp.Packet) {
+		handler.Handler = func(packet *core.Packet) {
 			if !c.start {
 				if !h265.IsKeyframe(packet.Payload) {
 					return
@@ -116,7 +115,7 @@ func (c *Consumer) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 		}
 
 	default:
-		handler.Handler = func(packet *rtp.Packet) {
+		handler.Handler = func(packet *core.Packet) {
 			if !c.start {
 				return
 			}

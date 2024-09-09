@@ -13,7 +13,7 @@ import (
 func RTPDepay(handlerFunc core.HandlerFunc) core.HandlerFunc {
 	buf := make([]byte, 0, 512*1024) // 512K
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		//log.Printf("[RTP] codec: %s, size: %6d, ts: %10d, pt: %2d, ssrc: %d, seq: %d, mark: %v", track.Codec.Name, len(packet.Payload), packet.Timestamp, packet.PayloadType, packet.SSRC, packet.SequenceNumber, packet.Marker)
 
 		// https://www.rfc-editor.org/rfc/rfc2435#section-3.1
@@ -94,7 +94,7 @@ func RTPPay(handlerFunc core.HandlerFunc) core.HandlerFunc {
 
 	sequencer := rtp.NewRandomSequencer()
 
-	return func(packet *rtp.Packet) {
+	return func(packet *core.Packet) {
 		// reincode image to more common form
 		p, err := Transcode(packet.Payload)
 		if err != nil {
@@ -169,7 +169,7 @@ func RTPPay(handlerFunc core.HandlerFunc) core.HandlerFunc {
 				jpgData = nil
 			}
 
-			clone := rtp.Packet{
+			clone := core.Packet{
 				Header: rtp.Header{
 					Version:        2,
 					Marker:         jpgData == nil,

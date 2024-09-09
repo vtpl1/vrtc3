@@ -12,7 +12,6 @@ import (
 	"time"
 
 	"github.com/pion/rtcp"
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/tcp"
 )
@@ -232,7 +231,7 @@ func (c *Conn) Handle() (err error) {
 		c.Recv += int(size)
 
 		if channelID&1 == 0 {
-			packet := &rtp.Packet{}
+			packet := &core.Packet{}
 			if err = packet.Unmarshal(buf); err != nil {
 				return
 			}

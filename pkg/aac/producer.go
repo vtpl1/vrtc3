@@ -62,7 +62,7 @@ func (c *Producer) Start() error {
 		payload[1] = 16 // header size in bits
 		binary.BigEndian.PutUint16(payload[2:], auSize<<3)
 
-		pkt := &rtp.Packet{
+		pkt := &core.Packet{
 			Header:  rtp.Header{Timestamp: core.Now90000()},
 			Payload: payload,
 		}

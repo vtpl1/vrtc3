@@ -49,7 +49,7 @@ func (c *Producer) Start() error {
 		return err
 	}
 
-	pkt := &rtp.Packet{
+	pkt := &core.Packet{
 		Header:  rtp.Header{Timestamp: core.Now90000()},
 		Payload: body,
 	}
@@ -76,7 +76,7 @@ func (c *Producer) Start() error {
 
 		c.Recv += len(body)
 
-		pkt = &rtp.Packet{
+		pkt = &core.Packet{
 			Header:  rtp.Header{Timestamp: core.Now90000()},
 			Payload: body,
 		}

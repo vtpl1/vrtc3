@@ -95,7 +95,7 @@ func (c *Producer) Start() error {
 			continue
 		}
 
-		pkt := &rtp.Packet{
+		pkt := &core.Packet{
 			Header: rtp.Header{
 				Version:        2,
 				Marker:         true,

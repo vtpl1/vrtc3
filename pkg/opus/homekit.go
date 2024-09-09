@@ -1,7 +1,6 @@
 package opus
 
 import (
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 )
 
@@ -40,7 +39,7 @@ const (
 func repackToHAP20(handler core.HandlerFunc) core.HandlerFunc {
 	var timestamp uint32
 
-	return func(pkt *rtp.Packet) {
+	return func(pkt *core.Packet) {
 		timestamp += timestamp20
 
 		clone := *pkt
@@ -59,7 +58,7 @@ func repackToHAP60(handler core.HandlerFunc) core.HandlerFunc {
 	var framesSize []byte
 	var framesData []byte
 
-	return func(pkt *rtp.Packet) {
+	return func(pkt *core.Packet) {
 		framesData = append(framesData, pkt.Payload[1:]...)
 
 		if framesCount++; framesCount < 3 {

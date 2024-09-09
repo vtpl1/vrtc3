@@ -3,7 +3,6 @@ package mp4
 import (
 	"io"
 
-	"github.com/pion/rtp"
 	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/h264"
 	"github.com/vtpl1/vrtc3/pkg/h265"
@@ -55,7 +54,7 @@ func (c *Keyframe) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 
 	switch track.Codec.Name {
 	case core.CodecH264:
-		handler.Handler = func(packet *rtp.Packet) {
+		handler.Handler = func(packet *core.Packet) {
 			if !h264.IsKeyframe(packet.Payload) {
 				return
 			}
@@ -75,7 +74,7 @@ func (c *Keyframe) AddTrack(media *core.Media, _ *core.Codec, track *core.Receiv
 		}
 
 	case core.CodecH265:
-		handler.Handler = func(packet *rtp.Packet) {
+		handler.Handler = func(packet *core.Packet) {
 			if !h265.IsKeyframe(packet.Payload) {
 				return
 			}

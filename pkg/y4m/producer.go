@@ -74,7 +74,7 @@ func (c *Producer) Start() error {
 			continue
 		}
 
-		pkt := &rtp.Packet{
+		pkt := &core.Packet{
 			Header:  rtp.Header{Timestamp: core.Now90000()},
 			Payload: frame,
 		}

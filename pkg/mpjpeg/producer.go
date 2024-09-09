@@ -55,7 +55,7 @@ func (c *Producer) Start() error {
 		c.Recv += len(body)
 
 		if mjpeg != nil {
-			packet := &rtp.Packet{
+			packet := &core.Packet{
 				Header:  rtp.Header{Timestamp: core.Now90000()},
 				Payload: body,
 			}
