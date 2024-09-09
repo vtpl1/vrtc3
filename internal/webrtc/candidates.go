@@ -2,11 +2,11 @@ package webrtc
 
 import (
 	"net"
-	"slices"
 	"strings"
 
 	pion "github.com/pion/webrtc/v3"
 	"github.com/vtpl1/vrtc3/internal/api/ws"
+	"github.com/vtpl1/vrtc3/pkg/core"
 	"github.com/vtpl1/vrtc3/pkg/webrtc"
 )
 
@@ -75,14 +75,14 @@ func FilterCandidate(candidate *pion.ICECandidate) bool {
 
 	// host candidate should be in the hosts list
 	if candidate.Typ == pion.ICECandidateTypeHost && filters.Candidates != nil {
-		if !slices.Contains(filters.Candidates, candidate.Address) {
+		if !core.Contains(filters.Candidates, candidate.Address) {
 			return false
 		}
 	}
 
 	if filters.Networks != nil {
 		networkType := NetworkType(candidate.Protocol.String(), candidate.Address)
-		if !slices.Contains(filters.Networks, networkType) {
+		if !core.Contains(filters.Networks, networkType) {
 			return false
 		}
 	}

@@ -115,17 +115,17 @@ Ultimate camera streaming application with support RTSP, WebRTC, HomeKit, FFmpeg
 
 Download binary for your OS from [latest release](https://github.com/vtpl1/vrtc3/releases/):
 
-- `vrtc3_win64.zip` - Windows 64-bit
-- `vrtc3_win32.zip` - Windows 32-bit
+- `vrtc3_win64.zip` - Windows 10+ 64-bit
+- `vrtc3_win32.zip` - Windows 7+ 32-bit
 - `vrtc3_win_arm64.zip` - Windows ARM 64-bit
 - `vrtc3_linux_amd64` - Linux 64-bit
 - `vrtc3_linux_i386` - Linux 32-bit
 - `vrtc3_linux_arm64` - Linux ARM 64-bit (ex. Raspberry 64-bit OS)
 - `vrtc3_linux_arm` - Linux ARM 32-bit (ex. Raspberry 32-bit OS)
 - `vrtc3_linux_armv6` - Linux ARMv6 (for old Raspberry 1 and Zero)
-- `vrtc3_linux_mipsel` - Linux MIPS (ex. [Xiaomi Gateway 3](https://github.com/vtpl1/XiaomiGateway3), [Wyze cameras](https://github.com/gtxaspec/wz_mini_hacks))
-- `vrtc3_mac_amd64.zip` - Mac Intel 64-bit
-- `vrtc3_mac_arm64.zip` - Mac ARM 64-bit
+- `vrtc3_linux_mipsel` - Linux MIPS (ex. [Xiaomi Gateway 3](https://github.com/AlexxIT/XiaomiGateway3), [Wyze cameras](https://github.com/gtxaspec/wz_mini_hacks))
+- `vrtc3_mac_amd64.zip` - macOS 10.13+ Intel 64-bit
+- `vrtc3_mac_arm64.zip` - macOS ARM 64-bit
 
 Don't forget to fix the rights `chmod +x vrtc3_xxx_xxx` on Linux and Mac.
 
